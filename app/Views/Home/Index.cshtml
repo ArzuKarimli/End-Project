@@ -36,46 +36,44 @@
                 <div class="linediv"></div>
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    <div class="about-img">
-                        <div class="over-div"></div>
-                        <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/about/about.jpg">
-                        <a href="https://www.youtube.com/watch?v=3f9CAMoj3Ec"><i class="fas fa-play"></i></a>
+                @foreach (var about in Model.Abouts)
+                {
+                    <div class="col-lg-6 col-md-12">
+                        <div class="about-img">
+                            <div class="over-div"></div>
+                            <img src="~/assets/images/about.jpg" alt="About Image">
+                            <a href="https://@about.VideoUrl"><i class="fas fa-play"></i></a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="about-desc">
-                        <h4>WELCOME TO EDULEARN</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua
-                        </p>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="about-desc">
+                            <h4>@about.Title</h4>
+                            <p>@about.Description</p>
+                            <div>
+                                <ul class="accordion" data-accordion="open">
+                                    <li>
+                                        <div class="accordion-header">Our History</div>
+                                        <div class="accordion-body">
+                                            <div>@about.History</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="accordion-header">Our Mission</div>
+                                        <div class="accordion-body">
+                                            <div>@about.Mission</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="accordion-header">Our Vision</div>
+                                        <div class="accordion-body">
+                                            <div>@about.Vision</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <ul class="accordion" data-accordion="open">
-                            <li>
-                                <div class="accordion-header">Our History</div>
-                                <div class="accordion-body">
-                                    <div>Lorem ipsum dolor sit amet</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="accordion-header">Our Mission</div>
-                                <div class="accordion-body">
-                                    <div>Lorem ipsum dolor sit amet</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="accordion-header">Our Vision</div>
-                                <div class="accordion-body">
-                                    <div>Lorem ipsum dolor sit amet</div>
-                                </div>
-                            </li>
-                        </ul>
-
-                        </ul>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </section>

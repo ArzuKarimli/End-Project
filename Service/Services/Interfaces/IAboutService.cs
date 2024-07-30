@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.ViewModel
+namespace Service.Services.Interfaces
 {
-    public class HomeVM
+    public interface IAboutService
     {
-       public List<Content> Contents { get; set; }
-       public List<About> Abouts { get; set; }
+        Task<IEnumerable<About>> GetAllAsync();
     }
 }
