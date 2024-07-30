@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Services.Interfaces
+namespace Repository.Repositories.Interfaces
 {
-    public interface ISliderService
+    public interface IContentRepository:IBaseRepository<Content>
     {
-       Task<IEnumerable<Slider>> GetAllAsync();
     }
 }

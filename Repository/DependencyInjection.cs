@@ -17,6 +17,7 @@ namespace Repository
 
             services.AddScoped<ISliderInfoRepository,SliderInfoRepository>();
             services.AddScoped<ISliderRepository,SliderRepository>();
+            services.AddScoped<IContentRepository, ContentRepository>();
             return services;
         }
     }

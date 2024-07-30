@@ -1,22 +1,17 @@
-﻿@model List<SliderVMVC>
+﻿
+@model SliderVMVC
 
 <div class="owl-carousel owl-theme main-slider">
-
-
-    @foreach (var item in Model)
+    @foreach (var slider in Model.Sliders)
     {
         <div class="item first-item">
-            <img src="~/assets/images/@item.Image">
+            <img src="~/assets/images/@slider.Image" alt="@slider.SliderInfo.Title">
             <div class="container elements">
-                <h1> @item.Title</h1>
-                <p class="">
-                    @Html.Raw(item.Title)
-                </p>
-                <a class="read-more" href=" ">READ MORE</a>
-                <a class="get-started" href=" ">GET STARTED NOW</a>
+                <h1>@slider.SliderInfo.Title</h1>
+                <p>@Html.Raw(slider.SliderInfo.Description)</p>
+                <a class="read-more" href="#">READ MORE</a>
+                <a class="get-started" href="#">GET STARTED NOW</a>
             </div>
         </div>
     }
-  
-   
 </div>

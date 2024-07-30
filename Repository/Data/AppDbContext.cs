@@ -13,9 +13,13 @@ namespace Repository.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         DbSet<Slider> Sliders { get; set; }
         DbSet<SliderInfo> SlidersInfos { get; set; }
+        DbSet<Content> Services { get; set; }
+        DbSet<About> Abouts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Content>()
+             .ToTable("Content");
         }
     }
 }

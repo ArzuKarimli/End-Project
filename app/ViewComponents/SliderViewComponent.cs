@@ -2,27 +2,45 @@
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Repository.Data;
-using Service.Services;
 using Service.Services.Interfaces;
+using Service.ViewModel;
 
 namespace Asp_project.ViewComponents
 {
-    public class SliderViewComponent : ViewComponent
+    using Microsoft.AspNetCore.Mvc;
+  
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    namespace Service.ViewComponents
     {
-        private readonly ISliderInfoService _sliderInfoService;
-
-        public SliderViewComponent(ISliderInfoService sliderInfoService)
+        public class SliderViewComponent : ViewComponent
         {
-            _sliderInfoService=sliderInfoService;
-        }
+            private readonly ISliderService _sliderService;
+            private readonly ISliderInfoService _sliderInfoService;
 
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            var model = await _sliderInfoService.GetAllAsync();
-            return View(model);
+            public SliderViewComponent(ISliderService sliderService, ISliderInfoService sliderInfoService)
+            {
+                _sliderService = sliderService;
+                _sliderInfoService = sliderInfoService;
+            }
+
+            public async Task<IViewComponentResult> InvokeAsync()
+            {
+                var sliders = await _sliderService.GetAllAsync();
+                var sliderInfos = await _sliderInfoService.GetAllAsync();
+
+                var viewModel = new SliderVMVC
+                {
+                    Sliders = sliders.ToList(),
+                    SliderInfos = sliderInfos.ToList()
+                };
+
+                return View(viewModel);
+            }
         }
     }
+
 
 
 }

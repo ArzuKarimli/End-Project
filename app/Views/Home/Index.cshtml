@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomeVM
+
+@{
     Layout = "_HomeLayout";
 }
 
@@ -6,52 +8,23 @@
     <section id="services">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-12">
-                    <div class="service">
-                        <div class="back">
-                            <i class="fas fa-american-sign-language-interpreting"></i>
+                @foreach (var item in Model.Contents)
+                {
+                    <div class="col-md-3 col-12">
+                        <div class="service">
+                            <div class="back">
+                                <i class="fas @item.Icon"></i>
+                            </div>
+                            <div class="content">
+                                <h4>@item.Title</h4>
+                                <p>@item.Description</p>
+                            </div>
                         </div>
-                        <div class="content">
-                            <h4>Trending Courses</h4>
-                            <p>Lorem ipsum dolor sit amet Sed nec molestie justo</p>
-                        </div>
-                    </div>
 
 
-                </div>
-                <div class="col-md-3 col-12">
-                    <div class="service">
-                        <div class="back">
-                            <i class="fas fa-book-open"></i>
-                        </div>
-                        <div class="content">
-                            <h4>Trending Courses</h4>
-                            <p>Lorem ipsum dolor sit amet Sed nec molestie justo</p>
-                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-12">
-                    <div class="service">
-                        <div class="back">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="content">
-                            <h4>Trending Courses</h4>
-                            <p>Lorem ipsum dolor sit amet Sed nec molestie justo</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-12">
-                    <div class="service">
-                        <div class="back">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="content">
-                            <h4>Trending Courses</h4>
-                            <p>Lorem ipsum dolor sit amet Sed nec molestie justo</p>
-                        </div>
-                    </div>
-                </div>
+                }
+              
             </div>
         </div>
     </section>
@@ -553,6 +526,7 @@
                 </div>
                 <a class="join-now" href=" ">Join Now</a>
             </div>
+         </div>
     </section>
     <section id="lastest-news">
         <div class="container">

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Services.Interfaces
+namespace Service.ViewModel
 {
-    public interface ISliderService
+    public class HomeVM
     {
-       Task<IEnumerable<Slider>> GetAllAsync();
+       public List<Content> Contents { get; set; }
     }
 }
