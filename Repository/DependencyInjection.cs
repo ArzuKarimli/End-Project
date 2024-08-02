@@ -19,6 +19,9 @@ namespace Repository
             services.AddScoped<ISliderRepository,SliderRepository>();
             services.AddScoped<IContentRepository, ContentRepository>();
             services.AddScoped<IAboutRepository,AboutRepository>();
+            services.AddScoped<ICourseCategoryRepository, CourseCategoryRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ISettingRepository, SettingRepository>();
             return services;
         }
     }

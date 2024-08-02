@@ -1,0 +1,95 @@
+﻿@model CourseVM
+@{
+    ViewData["Title"] = "Index";
+    ViewBag.ActiveTab = "ALL";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/course.css" />
+}
+<main>
+    <section id="courses">
+        <div class="container">
+            <div class="row">
+                <div class="tab-courses-menu">
+                    <h2>OUR COURSES</h2>
+                    <div class="line"></div>
+                    <div class="team-box">
+                        <ul id="tabMenu" class="nav-tabs">
+                            <li class="@(ViewBag.ActiveTab == "ALL" ? "active" : "")"><a href="#" data-category="ALL">ALL</a></li>
+                            @foreach (var category in Model.Courses.Select(m => m.CourseCategory.Name).Distinct())
+                            {
+                                <li class="@(ViewBag.ActiveTab == category ? "active" : "")">
+                                    <a data-category="@category">@category</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row course-cards">
+                @foreach (var item in Model.Courses)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-12 card-box" data-category="@item.CourseCategory.Name">
+                        <div class="course-card">
+                            <div class="card-img">
+                                <img src="~/assets/images/courses/@item.Image" alt="">
+                                <span class="course-price">$@item.Price</span>
+                                <div class="course-info">
+                                    <h4><a href="">@item.CourseCategory.Name</a></h4>
+                                    <div class="date-duration">
+                                        <div class="date">
+                                            <i class="fa-regular fa-calendar-days"></i>
+                                            <span>@item.Date</span>
+                                        </div>
+                                        <div class="duration">
+                                            <i class="fa-regular fa-calendar-days"></i>
+                                            <span>@item.Duration YEAR</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-title">
+                                <div class="title">
+                                    <h4><a href="">@item.Name</a></h4>
+                                    <p>@item.Description</p>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="seats-count">
+                                    <i class="fa-solid fa-users"></i><span>@item.Seat SEATS</span>
+                                </div>
+                                <div class="apply-btn"><a asp-controller="Course" asp-action="Detail" asp-route-id="@item.Id">GO TO DETAIL</a></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <section id="partner">
+        <div class="container">
+            <div class="owl-carousel five-slider">
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/1.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/2.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/3.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/4.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/5.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    <script src="~/js/course.js"></script>
+}
+

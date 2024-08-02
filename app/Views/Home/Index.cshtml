@@ -36,47 +36,74 @@
                 <div class="linediv"></div>
             </div>
             <div class="row">
-                @foreach (var about in Model.Abouts)
-                {
-                    <div class="col-lg-6 col-md-12">
-                        <div class="about-img">
-                            <div class="over-div"></div>
-                            <img src="~/assets/images/about.jpg" alt="About Image">
-                            <a href="https://@about.VideoUrl"><i class="fas fa-play"></i></a>
+                <div class="col-lg-6 col-md-12">
+                    <div class="about-img">
+                        <div class="over-div"></div>
+                        <img src="~/assets/images/about/@Model.Abouts.FirstOrDefault(m=>m.SectionName=="Home")?.Image" alt="About Image">
+                        <a href="https://www.youtube.com/watch?v=3f9CAMoj3Ec"><i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="about-desc">
+                        <h4>WELCOME TO EDULEARN</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                        <div>
+                            <ul class="accordion" data-accordion="open">
+                                @foreach (var about in Model.Abouts)
+                                {
+                                    @if (about.SectionName == "History")
+                                    {
+                                        <li>
+                                            <div class="accordion-header">Our History</div>
+                                            <div class="accordion-body">
+                                                <div>@about.Description</div>
+                                            </div>
+                                        </li>
+                                    }
+                                    @if (about.SectionName == "Mission")
+                                    {
+                                        @if (Model.Abouts.Count(a => a.SectionName == "Mission") > 1)
+                                        {
+                                            @if (Model.Abouts.IndexOf(about) == Model.Abouts.FindIndex(a => a.SectionName == "Mission"))
+                                            {
+                                                <li>
+                                                    <div class="accordion-header">Our Mission</div>
+                                                    <div class="accordion-body">
+                                                        <div>@about.Description</div>
+                                                    </div>
+                                                </li>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <div class="accordion-header">Our Mission</div>
+                                                <div class="accordion-body">
+                                                    <div>@about.Description</div>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+                                    @if (about.SectionName == "Vision")
+                                    {
+                                        <li>
+                                            <div class="accordion-header">Our Vision</div>
+                                            <div class="accordion-body">
+                                                <div>@about.Description</div>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="about-desc">
-                            <h4>@about.Title</h4>
-                            <p>@about.Description</p>
-                            <div>
-                                <ul class="accordion" data-accordion="open">
-                                    <li>
-                                        <div class="accordion-header">Our History</div>
-                                        <div class="accordion-body">
-                                            <div>@about.History</div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="accordion-header">Our Mission</div>
-                                        <div class="accordion-body">
-                                            <div>@about.Mission</div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="accordion-header">Our Vision</div>
-                                        <div class="accordion-body">
-                                            <div>@about.Vision</div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                }
+                </div>
             </div>
         </div>
     </section>
+
+
+
     <section id="popular-courses">
         <div class="container">
             <div class="sec-title">

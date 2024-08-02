@@ -1,0 +1,141 @@
+﻿@model HeaderVM
+
+<header>
+    <div class="apply">
+        <div class="container">
+            <div class="intro">
+                <div class="d-flex ml-3 welcome-head">
+                    <i class="fas fa-university iconuni"></i>
+                    <p class="element-p">Welcome to Edulearn</p>
+                </div>
+                <div class="d-flex icons-head">
+                    <div class="icons">
+                        <i class="fab fa-facebook-f fb"></i>
+                        <i class="fab fa-twitter tw"></i>
+                        <i class="fab fa-google-plus-g gg"></i>
+                        <i class="fab fa-linkedin-in link"></i>
+                    </div>
+                    <a class="ml-5" href="">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-second">
+        <div class="menu ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12"><div class="logo-area"><img src="~/assets/images/@Model.Settings["Logo-Header"]" alt=""></div></div>
+                    <div class="col-lg-9 col-md-12">
+                        <div class="menu-area">
+                            <ul class="nav-bars">
+                                <li class="dropdown">
+                                    <a>HOME</a>
+                                    <ul class="dropdown-ul">
+                                        <li><a class="first-a" href=" ">Home One</a></li>
+                                        <li><a href=" ">Home Two</a></li>
+                                        <li><a href=" ">Home Three</a></li>
+                                        <li><a href=" ">Home Four</a></li>
+                                        <li><a href=" ">Home five</a></li>
+                                        <li><a href=" ">Home Instructor</a></li>
+                                    </ul>
+
+                                </li>
+                                <li class="dropdown">
+                                    <a class="second-a">ABOUT US</a>
+                                    <ul class="dropdown-ul">
+                                        <li><a href=" ">About One</a></li>
+                                        <li><a href=" ">About Two</a></li>
+                                        <li><a href=" ">About Three</a></li>
+                                    </ul>
+
+                                </li>
+
+                                <li class="dropdown">
+                                    <a>COURSES</a>
+                                    <ul class="dropdown-ul">
+                                        <li><a href=" ">Courses One</a></li>
+                                        <li><a href=" ">Courses Two</a></li>
+                                        <li><a href=" ">Courses Details</a></li>
+                                        <li><a href=" ">Courses Details 2</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a>EVENTS</a>
+                                    <ul class="dropdown-ul">
+                                        <li><a href=" ">Events</a></li>
+                                        <li><a href=" ">Events details</a></li>
+                                        <li><a href=" ">Details</a></li>
+
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a>PAGES</a>
+                                    <ul class="dropdown-ul">
+                                        <li class="dropdown-change">
+                                            <a href=" ">Teachers</a>
+                                            <ul class="dropdown-ul-change">
+                                                <li><a href=" ">Teachers</a></li>
+                                                <li><a href=" ">Teachers Without Filter</a></li>
+                                                <li><a href=" ">Teachers Single</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-change">
+                                            <a href=" ">Gallery</a>
+                                            <ul class="dropdown-ul-change">
+                                                <li><a href=" ">Gallery One</a></li>
+                                                <li><a href=" ">Galler Two</a></li>
+                                                <li><a href=" ">Gallery Three</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-change">
+                                            <a href=" ">Shop</a>
+                                            <ul class="dropdown-ul-change">
+                                                <li><a href=" ">Shop</a></li>
+                                                <li><a href=" ">Shop Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href=" ">Cart</a></li>
+                                        <li><a href=" ">Checkout</a></li>
+                                        <li><a href=" ">Error 404</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a>BLOG</a>
+                                    <ul class="dropdown-ul">
+                                        <li><a href=" ">Blog</a></li>
+                                        <li><a href=" ">Blog Details</a></li>
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="">CONTACT</a></li>
+                                <li class="search"><i class="fa fa-search"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg">
+        <div class="bg-about" style="background-image: url('@Url.Content($"~/assets/images/about/{Model.Settings["Back-Image"]}")');">
+
+
+
+
+            <div class="container">
+                <div class="row">
+                    <h1 class="page-title">ABOUT US</h1>
+
+                </div>
+                <ul>
+                    <li>
+                        <a class="active" href="">Home</a>
+                    </li>
+                    <li class="second-li">About Us</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</header>

@@ -20,14 +20,15 @@ namespace app.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Content> contents= (List<Content>)await _contentService.GetAllAsync();
-            List<About> abouts= (List<About>)await _aboutService.GetAllAsync();
-            HomeVM model = new()
-            {
-                Contents = contents,
-                Abouts = abouts
+            var contents = await _contentService.GetAllAsync();
+            var abouts = await _aboutService.GetAllAsync();
 
+            var model = new HomeVM
+            {
+                Contents = contents.ToList(),
+                Abouts = abouts.ToList()
             };
+
             return View(model);
         }
     }

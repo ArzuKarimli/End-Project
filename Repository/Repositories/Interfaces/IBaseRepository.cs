@@ -11,6 +11,12 @@ namespace Repository.Repositories.Interfaces
     public interface IBaseRepository<T> where T : BaseEntity
     {
         Task<IEnumerable<T>> GetAllAsync();
+        Task CreateAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);  
+        Task<T> GetByIdAsync(int id);
+        IQueryable<T> FindAllWithIncludes(params Expression<Func<T, object>>[] includes);
+        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
 
     }
 }

@@ -1,0 +1,224 @@
+﻿@model AboutVM
+@{
+    ViewData["Title"] = "Index";
+   
+    
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/about.css" />
+}
+<main>
+    @foreach (var item in Model.Abouts)
+    {
+        <section id="@item.SectionName.ToLower()">
+            <div class="container">
+                <div class="row">
+                    @if (item.SectionName == "History")
+                    {
+                        <div class="col-lg-6 col-md-12">
+                            <img src="~/assets/images/about/@item.Image" alt="">
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="about-box">
+                              
+                                <div class="title-box">
+                                      <h1><strong>@item.SectionName.ToUpper()</strong></h1>
+                                </div>
+                                <p>@item.Description</p>
+                            </div>
+                        </div>
+                    }
+                    else if (item.SectionName == "Mission" )
+                    {
+                        <div class="col-lg-6 col-md-12">
+                            <div class="mission-box">
+                                <div class="title-box">
+                                      <h1><strong>@item.SectionName.ToUpper()</strong></h1>
+                                </div>
+                                <p>@item.Description</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="row">
+                                <img src="~/assets/images/about/@item.Image" alt="">
+                              
+                            </div>
+                        </div>
+                     
+                    }
+                    else if (item.SectionName == "Vision")
+                    {
+                        <div class="col-lg-6 col-md-12">
+                            <div class="box">
+                                <img src="~/assets/images/about/@item.Image" alt="">
+                                <i class="fa-youtube rs-animation-fade youtube-video" href="A Day in My Life at a German University"></i>
+                            </div>
+                        </div>
+                        <div class="video-box">
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="about-box">
+                                <div class="title-box">
+                                      <h1><strong>@item.SectionName.ToUpper()</strong></h1>
+                                </div>
+                                <p>@item.Description</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+  
+    <section id="web-design">
+        <div class="container">
+            <div class="development">
+                <div class="sec-title">
+                    <div class="imp-div">
+                        <h2>WEB DESIGN & DEVELOPMENT COURSE</h2>
+                        <p>Fusce sem dolor, interdum in fficitur at, faucibus nec lorem. Sed nec molestie justo.</p>
+                        <div class="linediv"></div>
+                    </div>
+                </div>
+                <a class="join-now" href="#">Join Now</a>
+            </div>
+        </div>
+    </section>
+
+
+    
+    <section id="experienced">
+        <section id="popular-courses">
+            <div class="container">
+                <div class="sec-title">
+                    <h2>OUR EXPERIENCED STAFFS</h2>
+                    <p>Fusce sem dolor, interdum in fficitur at, faucibus nec lorem. Sed nec molestie justo.</p>
+                    <div class="linediv"></div>
+                </div>
+                <div>
+                    <div class="owl-carousel owl-theme second-slider">
+                        <div class="item">
+                            <div class="general">
+                                <div class="item-header">
+                                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/team/3.jpg">
+                                    <div class="text-teamimg">
+                                        <h3 class="team-name">Mr.Mahabub Alam</h3>
+                                        <span class="span-name">Asistant.Professor</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="line-div text-center">
+                                <div class="professor">
+                                    <div class="centry">
+                                        <h4>Mr.Mahabub Alam</h4>
+                                        <p>Asistant Professor</p>
+                                        <span></span>
+                                        <p class="pelem">Entrusted with planning, implementation and evaluation.</p>
+                                        <div class="line-icons">
+                                            <a class="icons-line" href=""><i class="fab fa-facebook-f"></i></a>
+                                            <a class="icons-line" href=""><i class="fab fa-google-plus-g"></i></a>
+                                            <a class="icons-line" href=""><i class="fab fa-twitter"></i></a>
+                                            <a class="icons-line" href=""><i class="fab fa-pinterest-p"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="general">
+                                <div class="item-header">
+                                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/team/1.jpg">
+                                    <div class="text-teamimg">
+                                        <h3 class="team-name">ABD Rashid Khan</h3>
+                                        <span class="span-name">Vice Chancellor</span>
+                                    </div>
+                                </div>
+                                <div class="line-div text-center">
+                                    <div class="professor">
+                                        <div class="centry">
+                                            <h4>Mr.Mahabub Alam</h4>
+                                            <p>Asistant Professor</p>
+                                            <span></span>
+                                            <p class="pelem">
+                                                Entrusted with planning, implementation and evaluation.
+                                            </p>
+                                            <div class="line-icons">
+                                                <a class="icons-line" href=""><i class="fab fa-facebook-f"></i></a>
+                                                <a class="icons-line" href="">
+                                                    <i class="fab fa-google-plus-g"></i>
+                                                </a>
+                                                <a class="icons-line" href=""><i class="fab fa-twitter"></i></a>
+                                                <a class="icons-line" href=""><i class="fab fa-pinterest-p"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="general">
+                                <div class="item-header">
+                                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/team/2.jpg">
+                                    <div class="text-teamimg">
+                                        <h3 class="team-name">Luyes Figery</h3>
+                                        <span class="span-name">A.Professor</span>
+                                    </div>
+                                </div>
+                                <div class="line-div text-center">
+                                    <div class="professor">
+                                        <div class="centry">
+                                            <h4>Mr.Mahabub Alam</h4>
+                                            <p>Asistant Professor</p>
+                                            <span></span>
+                                            <p class="pelem">
+                                                Entrusted with planning, implementation and evaluation.
+                                            </p>
+                                            <div class="line-icons">
+                                                <a class="icons-line" href=""><i class="fab fa-facebook-f"></i></a>
+                                                <a class="icons-line" href="">
+                                                    <i class="fab fa-google-plus-g"></i>
+                                                </a>
+                                                <a class="icons-line" href=""><i class="fab fa-twitter"></i></a>
+                                                <a class="icons-line" href=""><i class="fab fa-pinterest-p"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </section>
+    <section id="partner">
+        <div class="container">
+            <div class="owl-carousel five-slider">
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/1.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/2.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/3.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/4.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/5.png"
+                         alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

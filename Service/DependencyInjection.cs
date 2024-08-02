@@ -18,6 +18,9 @@ namespace Service
             services.AddScoped<ISliderService,SliderService>();
             services.AddScoped<IContentService, ContentService>();
             services.AddScoped<IAboutService,AboutService>();
+            services.AddScoped<ICourseCategoryService, CourseCategoryService>();
+            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ISettingService, SettingService>();
             return services;
         }
 

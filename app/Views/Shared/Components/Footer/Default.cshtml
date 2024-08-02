@@ -1,0 +1,116 @@
+﻿@model FooterVM
+
+<footer>
+    <div class="container relative-div">
+        <div class="row footer-contact">
+            <div class="col-md-4">
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Address</h4>
+                    <p>@Model.Settings["Address1"]</p>
+                    <p>@Model.Settings["Address2"]</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class=" bef-aft">
+
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Phone Number</h4>
+                    <p>@Model.Settings["Phone1"]</p>
+                    <p>@Model.Settings["Phone2"]</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class=" bef-aft">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Email Address</h4>
+                    <p>@Model.Settings["Email1"]</p>
+                    <p>@Model.Settings["Email2"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="mother-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-12">
+                    <div class="part-1">
+                        <img src="~/assets/images/@Model.Settings["Logo-Footer"]"
+                             alt="">
+                        <p>
+                            We create Premium Html Themes for more than three years. Our team goal is to reunite the
+                            elegance of unique.
+                        </p>
+                        <p>We create Unique and Easy To Use Flexible Html Themes.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <h5 class="col-title">RECENT POSTS</h5>
+                    <div class="part-2">
+                        <div class="team-work">
+                            <div class="team-date">
+                                <span>28</span>
+                                <span>june</span>
+                            </div>
+                            <div class="team-about">
+                                <h5><a href=" ">While the lovely valley team work</a></h5>
+                                <span>Keyword Analysis</span>
+                            </div>
+                        </div>
+                        <div class="team-work team-work1">
+                            <div class="team-date">
+                                <span>28</span>
+                                <span>june</span>
+                            </div>
+                            <div class="team-about">
+                                <h5><a href=" ">I must explain to you how all this idea</a></h5>
+                                <span>Spoken English</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <h5 class="sitemap">OUR SITEMAP</h5>
+                    <ul class="sitemap-ul">
+                        <li><i class="fas fa-angle-right"></i><a href="">Home</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">About</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Courses</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Courses Details</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Events</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Event Details</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Blog</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Blog Details</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Teachers</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Teachers Details</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Contact</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="">Eror 404</a></li>
+
+
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <h5 class="newsletter">NEWSLETTER</h5>
+                    <p class="elem-p">Sign Up to Our Newsletter to Get Latest Updates & Services</p>
+                    <form class="new-form">
+                        <input type="text" placeholder="Enter Your Email">
+                        <button><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-icon">
+                <ul>
+                    <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    <li><a href=""><i class="fab fa-pinterest-p"></i></a></li>
+                    <li><a href=""><i class="fab fa-vimeo-v"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="footer-end">
+        <div class="container text-center">
+            <p>© 2018<a href="">RS Theme.</a>All Rights Reserved.</p>
+        </div>
+    </section>
+</footer>

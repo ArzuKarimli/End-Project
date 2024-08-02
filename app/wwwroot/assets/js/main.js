@@ -1,7 +1,16 @@
-//first accordion
-$(function(){
+﻿//first accordion
+$(function () {
+    $(document).ready(function () {
+        $('#tabMenu a').on('click', function (event) {
+            event.preventDefault();
 
-    setTimeout(function() {
+
+            $('#tabMenu a').removeClass('active');
+
+            $(this).addClass('active');
+        });
+    });
+    setTimeout(function () {
         $(".loading-modal").addClass("loading-modal--hidden")
     }, 2500);
 
@@ -19,39 +28,39 @@ $(function(){
     })
 
     var a = 0;
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         var oTop = $('#acheivements').offset().top - window.innerHeight;
         if (a == 0 && $(window).scrollTop() > oTop) {
-            $('.counter-value').each(function() {
-            var $this = $(this),
-                countTo = $this.attr('data-count');
-            $({
-                countNum: $this.text()
-            }).animate({
-                countNum: countTo
+            $('.counter-value').each(function () {
+                var $this = $(this),
+                    countTo = $this.attr('data-count');
+                $({
+                    countNum: $this.text()
+                }).animate({
+                    countNum: countTo
                 },
 
-                {
+                    {
 
-                duration: 1500,
-                easing: 'swing',
-                step: function() {
-                    $this.text(Math.floor(this.countNum));
-                },
-                complete: function() {
-                    $this.text(this.countNum);
-                   
-                }
+                        duration: 1500,
+                        easing: 'swing',
+                        step: function () {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function () {
+                            $this.text(this.countNum);
 
-                });
+                        }
+
+                    });
             });
             a = 1;
         }
     });
 
-    $(window).scroll(function() {    
+    $(window).scroll(function () {
         var scroll = $(window).scrollTop();
-    
+
         if (scroll >= 200) {
             $("#nav-bar").addClass("nav-bar--fixed");
             $(".edulearn").addClass("edulearn--fix")
@@ -71,114 +80,138 @@ $(function(){
     });
 
     //modal!//
-  
-    $(".barsbtn").click(function(){
+
+    $(".barsbtn").click(function () {
         $(".modal-content").css("right", "360px");
 
     });
-    $("#nav-close").click(function(){
+    $("#nav-close").click(function () {
         $(".modal-content").css("right", "0");
     })
 
-    $(".searchbtn").click(function(){
+    $(".searchbtn").click(function () {
         $(".bg1-modal").css("display", "block");
-      
+
 
     });
-    $(".close5").click(function(){
+    $(".close5").click(function () {
         $(".bg1-modal").css("display", "none");
     })
-    
+
 
 
     var owl = $('.main-slider');
     owl.owlCarousel({
-        loop:true,
-        margin:0,
-        navSpeed:800,
-        nav:false,
-        items:1,
-        touchDrag:false,
-        autoplay:true,
-        transitionStyle : "fade",
+        loop: true,
+        margin: 0,
+        navSpeed: 800,
+        nav: false,
+        items: 1,
+        touchDrag: false,
+        autoplay: true,
+        transitionStyle: "fade",
     });
 
 
     $('.second-slider').owlCarousel({
-        loop:true,
-        margin:0,
-        navSpeed:800,
-        margin:30,
-        nav:true,
+        loop: true,
+        margin: 0,
+        navSpeed: 800,
+        margin: 30,
+        nav: true,
         responsive: {
             0: {
-                items:1
+                items: 1
             },
             768: {
-                items:2
+                items: 2
             },
             992: {
-                items:3
+                items: 3
             }
         }
     });
 
     $('.third-slider').owlCarousel({
-        autoplay:false,
-        loop:true,
-        margin:30,
-        nav:true,
-        responsive:{
-            0:{
-                items:1
+        autoplay: false,
+        loop: true,
+        margin: 30,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
             },
-            600:{
-                items:2
+            600: {
+                items: 2
             },
-            800:{
-              items:3  
+            800: {
+                items: 3
             },
-            1000:{
-                items:4
+            1000: {
+                items: 4
             }
         }
     })
 
     $('.four-slider').owlCarousel({
-        autoplay:false,
-        loop:true,
-        margin:30,
-        nav:true,
-        responsive:{
-            0:{
-                items:1
+        autoplay: false,
+        loop: true,
+        margin: 30,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
             },
-            600:{
-                items:2
+            600: {
+                items: 2
             },
-            1000:{
-                items:2
+            1000: {
+                items: 2
             }
         }
     })
 
     $('.five-slider').owlCarousel({
-        autoplay:true,
-        loop:true,
-        margin:85,
-        nav:true,
-        responsive:{
-            0:{
-                items:2
+        autoplay: true,
+        loop: true,
+        margin: 85,
+        nav: true,
+        responsive: {
+            0: {
+                items: 2
             },
-            600:{
-                items:3
+            600: {
+                items: 3
             },
-            1000:{
-                items:5
+            1000: {
+                items: 5
             }
         }
     })
- })
+    $(document).ready(function () {
+        $('#tabMenu a').on('click', function (event) {
+            event.preventDefault(); 
+
+            var selectedCategory = $(this).data('category');
+
+            $('#tabMenu li a').removeClass('active');
+
+            $(this).addClass('active');
+
+            if (selectedCategory === 'ALL') {
+                $('.course-cards .card-box').show();
+            } else {
+                $('.course-cards .card-box').each(function () {
+                    if ($(this).data('category') === selectedCategory) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    });
+
+})
 
      
