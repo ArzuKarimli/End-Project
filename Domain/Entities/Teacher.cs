@@ -10,6 +10,7 @@ namespace Domain.Entities
     {
         public string FullName { get; set; }
         public string Image { get; set; }
+        public bool IsMain { get; set; } = false;
         public ICollection<Course> Courses { get; set; }
     }
 }

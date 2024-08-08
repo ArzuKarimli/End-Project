@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Service.Services;
 using Service.Services.Interfaces;
 using System;
@@ -21,6 +22,11 @@ namespace Service
             services.AddScoped<ICourseCategoryService, CourseCategoryService>();
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ISettingService, SettingService>();
+            services.AddScoped<ITeacherService, TeacherService>();
+            services.AddScoped<IProductService,ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICartService,CartService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             return services;
         }
 

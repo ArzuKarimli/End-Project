@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Repository.Repositories.Interfaces;
 using Service.Services.Interfaces;
 using System;
@@ -21,7 +22,7 @@ namespace Service.Services
            return await _courseRepository.GetAllAsync();
         }
 
-        public async Task<IEnumerable<Course>> GetAllWithCategories()
+        public async Task<IEnumerable<Course>> GetAllWithCategoriesAsync()
         {
           return await _courseRepository.GetAllWithCategories();
         }
@@ -33,8 +34,9 @@ namespace Service.Services
 
         public async Task<Course> GetByIdWithCategory(int id)
         {
-          var course= _courseRepository.FindBy(m=>m.Id == id,m=>m.CourseCategory).FirstOrDefault();
+          var course= _courseRepository.FindBy(m=>m.Id == id,m=>m.CourseCategory,m=>m.Teachers).FirstOrDefault();
             return course;
         }
+     
     }
 }

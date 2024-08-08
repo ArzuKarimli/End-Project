@@ -7,6 +7,14 @@
 body {
   overflow-x: hidden;
   font-family: "Roboto Condensed", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 ::-moz-selection {
@@ -333,58 +341,208 @@ body {
 #product {
   padding: 100px 0;
 }
-#product .categories #category {
-  display: block;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
+#product .filters {
   background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+#product .filters h3 {
+  color: #000;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+#product .filters .filter-brands .brand-list label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+#product .filters .filter-brands .brand-list label input[type=checkbox] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #eaeaea;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+}
+#product .filters .filter-brands .brand-list label input[type=checkbox]:checked {
+  background-color: #e9280f;
+  border-color: #e9280f;
+}
+#product .filters .filter-brands .brand-list label input[type=checkbox]:checked::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+#product .filters .filter-brands .brand-list label input[type=checkbox]:hover {
+  border-color: #e9280f;
+}
+#product .filters .filter-category, #product .filters .filter-price-range, #product .filters .filter-brands {
+  margin-bottom: 20px;
+}
+#product .filters .filter-category select, #product .filters .filter-category input[type=range], #product .filters .filter-price-range select, #product .filters .filter-price-range input[type=range], #product .filters .filter-brands select, #product .filters .filter-brands input[type=range] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 16px;
+}
+#product .filters .filter-category input[type=range], #product .filters .filter-price-range input[type=range], #product .filters .filter-brands input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #eaeaea;
+  outline: none;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+#product .filters .filter-category input[type=range]::-webkit-slider-thumb, #product .filters .filter-price-range input[type=range]::-webkit-slider-thumb, #product .filters .filter-brands input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #e9280f;
+  cursor: pointer;
+  border-radius: 50%;
+}
+#product .filters .filter-category input[type=range]::-moz-range-thumb, #product .filters .filter-price-range input[type=range]::-moz-range-thumb, #product .filters .filter-brands input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #e9280f;
+  cursor: pointer;
+  border-radius: 50%;
+}
+#product .filters .filter-category input[type=range]::-ms-thumb, #product .filters .filter-price-range input[type=range]::-ms-thumb, #product .filters .filter-brands input[type=range]::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  background: #e9280f;
+  cursor: pointer;
+  border-radius: 50%;
+}
+#product .filters .filter-category input[type=range]::-ms-track, #product .filters .filter-price-range input[type=range]::-ms-track, #product .filters .filter-brands input[type=range]::-ms-track {
+  width: 100%;
+  height: 8px;
+  background: #eaeaea;
+  border-color: transparent;
+  color: transparent;
+}
+#product .filters .filter-category .price-values, #product .filters .filter-price-range .price-values, #product .filters .filter-brands .price-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: #666;
+}
+#product .filters .filter-category .price-values span, #product .filters .filter-price-range .price-values span, #product .filters .filter-brands .price-values span {
+  font-size: 14px;
+}
+#product .filters .filter-category .brand-list, #product .filters .filter-price-range .brand-list, #product .filters .filter-brands .brand-list {
+  display: flex;
+  flex-direction: column;
+}
+#product .filters .filter-category .brand-list label, #product .filters .filter-price-range .brand-list label, #product .filters .filter-brands .brand-list label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+#product .filters .filter-category .brand-list label input, #product .filters .filter-price-range .brand-list label input, #product .filters .filter-brands .brand-list label input {
+  margin-right: 5px;
 }
 #product .sorted {
-  float: right;
+  margin-bottom: 20px;
 }
-#product .sorted #sort {
-  display: block;
+    #product .search h3 {
+        font-weight: 700;
+        font-size: 20px;
+        color: #212121;
+        margin-bottom: 25px;
+    }
+
+    #product .search .search-container {
+        display: flex;
+        margin-bottom: 45px;
+    }
+
+        #product .search .search-container .search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+            #product .search .search-container .search-input:focus {
+                border-color: #ff3115;
+            }
+
+        #product .search .search-container .search-button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ff3115;
+            background-color: #ff3115;
+            color: #fff;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            #product .search .search-container .search-button:hover {
+                background-color: #e11b00;
+            }
+#product .sorted select {
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 16px;
   width: 100%;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  max-width: 200px;
 }
 #product .products-carts {
-  margin-top: 35px;
+  margin-top: 10px;
 }
 #product .products-carts .product-cart {
   position: relative;
   width: 100%;
-  height: 420px;
+  height: auto;
   overflow: hidden;
   background-color: #fff;
   transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 #product .products-carts .product-cart .image {
   position: relative;
   overflow: hidden;
   margin-bottom: 25px;
+  width: 270px;
+  height: 270px;
 }
+    #product .products-carts .product-cart .image img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: auto;
+    }
 #product .products-carts .product-cart .image .cart-icon {
   position: absolute;
   left: 0;
@@ -397,7 +555,7 @@ body {
   transform: scaleY(0);
   transform-origin: 0 1 0;
   opacity: 0;
-  transition: all 0.3s ease 0s;
+  transition: all 0.3s ease;
   padding: 30px;
 }
 #product .products-carts .product-cart .image .cart-icon .icons {
@@ -413,13 +571,13 @@ body {
   padding: 10px;
   border: 1px solid #ffffff;
   text-align: center;
-  transition: all 0.3s ease 0s;
+  transition: all 0.3s ease;
 }
 #product .products-carts .product-cart .image .cart-icon .icons li a i {
   font-size: 16px;
   color: #ffffff;
   margin: 0;
-  transition: all 0.3s ease 0s;
+  transition: all 0.3s ease;
 }
 #product .products-carts .product-cart .image .cart-icon .icons li a i:hover {
   color: #e41f05;
@@ -440,9 +598,7 @@ body {
   opacity: 0;
 }
 #product .products-carts .product-cart h4 {
-  margin-bottom: 10px !important;
-  margin: 0 0 26px;
-  margin-left: 0;
+  margin: 0 0 14px;
   font-weight: 700;
   font-family: "Roboto Condensed", sans-serif;
   color: #212121;
@@ -450,10 +606,21 @@ body {
 }
 #product .products-carts .product-cart h4 a {
   color: #212121;
-  transition: all 0.3s ease 0s;
+  transition: all 0.3s ease;
   font-size: 20px;
-  margin: 0;
   text-decoration: none;
+}
+#product .products-carts .product-cart .product-rating {
+  text-align: center;
+  margin-bottom: 10px;
+}
+#product .products-carts .product-cart .product-rating .stars {
+  color: #ff6f61;
+  font-size: 14px;
+}
+#product .products-carts .product-cart .product-rating .rating-count {
+  color: #505050;
+  font-size: 14px;
 }
 #product .products-carts .product-cart .cart-title {
   text-align: center;
@@ -466,17 +633,17 @@ body {
   text-align: center;
   color: #505050;
 }
-#product .products-carts .product-cart .cart-title button {
-  border: 1px solid #ff3115;
-  padding: 14px 18px;
-  color: #212121;
-  font-size: 15px;
-  font-weight: 600;
-  display: inline-block;
-  margin-top: 15px;
-  background: none;
-  cursor: pointer;
-}
+    #product .products-carts .product-cart .cart-title .add-to-cart-btn {
+        border: 1px solid #ff3115;
+        padding: 9px 26px;
+        color: #212121;
+        font-size: 15px;
+        font-weight: 600;
+        display: inline-block;
+        margin-top: 15px;
+        background: none;
+        cursor: pointer;
+    }
 #product .products-carts .product-cart .cart-title button:hover {
   transition: all 0.3s;
   background: #ff3115;

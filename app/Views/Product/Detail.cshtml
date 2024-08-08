@@ -1,0 +1,161 @@
+﻿@model ProductDetailVM
+@{
+    ViewData["Title"] = "Detail";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/detail.css"/>
+}
+
+<main>
+    @await Html.PartialAsync("_PresentationModalView", new ProductVM
+{
+    Products = Model.Products.Where(m => m.Category.Name == Model.Product.Category.Name).ToList(),
+    ProductCategories = Model.ProductCategories
+})
+    
+    <section id="detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="product-info">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="inner-single-product-slider">
+                                    <div class="inner">
+                                        <div class="slider single-product slider-for">
+                                            @foreach (var image in Model.Product.ProductImages)
+                                            {
+                                                <div>
+                                                    <div class="images-single">
+                                                        <img src="~/assets/images/Products-images/@image.Name" alt="">
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="slider single-product-nav slider-nav">
+                                        @foreach (var image in Model.Product.ProductImages)
+                                        {
+                                            <div class="images-slide-single">
+                                                <img src="~/assets/images/Products-images/@image.Name" alt="">
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <h4>@Model.Product.Name</h4>
+                                <p>@Model.Product.Description</p>
+                                <p class="cat"><strong>Category:</strong> @Model.Product.Category.Name</p>
+                                <p class="tag"><strong>Price:</strong> @Model.Product.Price</p>
+                                <p class="tag"><strong>Weight:</strong> @Model.Product.Weight</p>
+                                <p class="tag"><strong>Material:</strong> @Model.Product.Material</p>
+                                <span class="stars">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= Math.Floor(Model.Product.Rating))
+                                        {
+                                            <i class="fa-solid fa-star" style="color: #dc3f2e;"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa-regular fa-star" style="color: #dc3f2e;"></i>
+                                        }
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-menu mt-5">
+                        <ul class="tabs">
+                            <li class="tab-link active" data-tab="description">Description</li>
+                            <li class="tab-link" data-tab="reviews">Reviews</li>
+                        </ul>
+                        <div id="description" class="tab-content active">
+                            <h2><strong>Description</strong></h2>
+                            <p>@Model.Product.Description</p>
+                        </div>
+                        <div id="reviews" class="tab-content">
+                            <h2><strong>Reviews</strong></h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                 
+                    <div class="categories mb-4">
+                       
+                        <h3>Categories</h3>
+                        <ul class="list-unstyled product-categorie">
+                        
+                           @foreach (var item in Model.ProductCategories)
+                            {
+                                <li>
+                                    <div class="d-flex justify-content-between product-name">
+                                        <a href="#"><i class="fa-solid fa-angle-right"></i>@item.Name</a>
+                                        <span class="count">(@item.Products.Count())</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <h3>Courses Tags</h3>
+                        <div class="boxes">
+                            <div class="box"><span>SCIENCE</span></div>
+                            <div class="box"><span>HUMANITIES</span></div>
+                            <div class="box"><span>DIPLOMA</span></div>
+                        </div>
+                        <div class="boxes">
+                            <div class="box"><span>BUSINESS</span></div>
+                            <div class="box"><span>SPORTS</span></div>
+                            <div class="box"><span>RESEARCH</span></div>
+                            <div class="box"><span>ARTS</span></div>
+                        </div>
+                        <div class="boxes">
+                            <div class="box"><span>ADMISSIONS</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="product">
+        <div class="container text-center">
+            <div class="product-title">
+                <h2>Related product</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                <div class="line"></div>
+            </div>
+            @await Html.PartialAsync("_ProductList", new ProductVM
+       {
+           Products = Model.Products.Where(m => m.Category.Name == Model.Product.Category.Name).ToList(),
+           ProductCategories = Model.ProductCategories
+       })
+        </div>
+    </section>
+    <section id="partner">
+        <div class="container">
+            <div class="owl-carousel five-slider">
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/1.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/2.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/3.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/4.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/5.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

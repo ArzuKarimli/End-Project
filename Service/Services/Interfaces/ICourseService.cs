@@ -10,8 +10,9 @@ namespace Service.Services.Interfaces
     public interface ICourseService
     {
         Task<IEnumerable<Course>> GetAllAsync();
-        Task<IEnumerable<Course>> GetAllWithCategories();
+        Task<IEnumerable<Course>> GetAllWithCategoriesAsync();
         Task<Course> GetByIdAsync(int id);
         Task<Course> GetByIdWithCategory(int id);
+      
     }
 }

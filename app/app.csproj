@@ -7,10 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\_ProductListPartial.cshtml" />
+    <Content Remove="wwwroot\assets\js\modal.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\assets\.DS_Store" />
     <None Include="wwwroot\assets\css\.DS_Store" />
     <None Include="wwwroot\assets\images\.DS_Store" />
     <None Include="wwwroot\assets\js\.DS_Store" />
+    <None Include="wwwroot\assets\js\modal.js" />
     <None Include="wwwroot\assets\OwlCarousel2-2.3.4\src\.DS_Store" />
   </ItemGroup>
 
@@ -25,6 +31,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Service\Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\_ProductListPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\_ProductListPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\js\modal.js" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,25 @@
+﻿ @model ProductVM
+
+<link rel="stylesheet" href="~/assets/css/modal.css" />
+ <div id="customCartModal" class="custom-modal d-none">
+    <div class="custom-modal-overlay"></div>
+    <div class="custom-modal-content">
+        <div class="custom-modal-header">
+            <span class="custom-close">&times;</span>
+            <h5>Cart Information</h5>
+        </div>
+        <div class="custom-modal-body">
+            <p>Your cart has been updated.</p>
+            <div class="cart-summary">
+                <p>Total Count: <span class="total-count"> @ViewBag.TotalPrice</span></p>
+                <p>Total Price: <span class="total-price"> @ViewBag.ProductCount </span></p>
+            </div>
+        </div>
+        <div class="custom-modal-footer">
+            <button id="custom-close-btn" class="btn btn-secondary">Close</button>
+            <a href="@Url.Action("Index", "Cart")" class="btn btn-dark">Go to Cart</a>
+        </div>
+    </div>
+</div> 
+
+

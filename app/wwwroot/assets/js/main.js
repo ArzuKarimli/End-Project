@@ -1,19 +1,10 @@
-﻿//first accordion
-$(function () {
-    $(document).ready(function () {
-        $('#tabMenu a').on('click', function (event) {
-            event.preventDefault();
-
-
-            $('#tabMenu a').removeClass('active');
-
-            $(this).addClass('active');
-        });
-    });
+﻿$(function () {
+  
     setTimeout(function () {
         $(".loading-modal").addClass("loading-modal--hidden")
     }, 2500);
 
+  
     $(".nav-bars .dropdown").on("click", function () {
         var self = $(this);
         if ($(window).width() < 768) {
@@ -21,12 +12,14 @@ $(function () {
         }
     });
 
+
     $(".barsbtn").on('click', function () {
         if ($(window).width() < 768) {
             $(".nav-bars").slideToggle();
         }
-    })
+    });
 
+    
     var a = 0;
     $(window).scroll(function () {
         var oTop = $('#acheivements').offset().top - window.innerHeight;
@@ -39,9 +32,7 @@ $(function () {
                 }).animate({
                     countNum: countTo
                 },
-
                     {
-
                         duration: 1500,
                         easing: 'swing',
                         step: function () {
@@ -49,18 +40,16 @@ $(function () {
                         },
                         complete: function () {
                             $this.text(this.countNum);
-
                         }
-
                     });
             });
             a = 1;
         }
     });
 
+
     $(window).scroll(function () {
         var scroll = $(window).scrollTop();
-
         if (scroll >= 200) {
             $("#nav-bar").addClass("nav-bar--fixed");
             $(".edulearn").addClass("edulearn--fix")
@@ -70,6 +59,7 @@ $(function () {
         }
     });
 
+  
     $(".accordion li").on('click', function () {
         const otherElements = $(this).parent().find("li").not(this);
         otherElements.find(".accordion-body").slideUp("fast");
@@ -79,27 +69,22 @@ $(function () {
         $(this).find(".accordion-body").slideToggle("fast");
     });
 
-    //modal!//
-
+ 
     $(".barsbtn").click(function () {
         $(".modal-content").css("right", "360px");
-
     });
     $("#nav-close").click(function () {
         $(".modal-content").css("right", "0");
-    })
+    });
 
     $(".searchbtn").click(function () {
         $(".bg1-modal").css("display", "block");
-
-
     });
     $(".close5").click(function () {
         $(".bg1-modal").css("display", "none");
-    })
+    });
 
-
-
+   
     var owl = $('.main-slider');
     owl.owlCarousel({
         loop: true,
@@ -111,7 +96,6 @@ $(function () {
         autoplay: true,
         transitionStyle: "fade",
     });
-
 
     $('.second-slider').owlCarousel({
         loop: true,
@@ -151,7 +135,7 @@ $(function () {
                 items: 4
             }
         }
-    })
+    });
 
     $('.four-slider').owlCarousel({
         autoplay: false,
@@ -169,7 +153,7 @@ $(function () {
                 items: 2
             }
         }
-    })
+    });
 
     $('.five-slider').owlCarousel({
         autoplay: true,
@@ -187,31 +171,20 @@ $(function () {
                 items: 5
             }
         }
-    })
-    $(document).ready(function () {
-        $('#tabMenu a').on('click', function (event) {
-            event.preventDefault(); 
-
-            var selectedCategory = $(this).data('category');
-
-            $('#tabMenu li a').removeClass('active');
-
-            $(this).addClass('active');
-
-            if (selectedCategory === 'ALL') {
-                $('.course-cards .card-box').show();
-            } else {
-                $('.course-cards .card-box').each(function () {
-                    if ($(this).data('category') === selectedCategory) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            }
-        });
     });
 
-})
 
-     
+   
+ 
+
+    // Price range display
+    const priceRange = document.getElementById('price');
+    const minPrice = document.getElementById('min-price');
+    const maxPrice = document.getElementById('max-price');
+
+    priceRange.addEventListener('input', function () {
+        minPrice.textContent = `₼${priceRange.min}`;
+        maxPrice.textContent = `₼${priceRange.value}`;
+    });
+});
+

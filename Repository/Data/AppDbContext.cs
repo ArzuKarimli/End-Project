@@ -19,6 +19,9 @@ namespace Repository.Data
         public DbSet<CourseCategory> CourseCategories { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
    
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

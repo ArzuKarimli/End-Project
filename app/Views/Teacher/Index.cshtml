@@ -1,0 +1,82 @@
+﻿@model TeacherVM
+@{
+    ViewData["Title"] = "Index";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/teach.css" />
+}
+<main>
+    <section id="teachers">
+        <div class="team-area">
+            <div class="container">
+                <div class="row">
+                    <div class="team-box">
+                        <ul id="tabMenu" class="nav-tabs">
+                            <li class="active"><a data-category="ALL">ALL</a></li>
+                            @foreach (var category in Model.CourseCategories)
+                            {
+                                <li>
+                                    <a href="#" data-category="@category.Name">@category.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in Model.Teachers)
+                    {
+                        var categories = string.Join(" ", item.Courses.Select(c => c.CourseCategory.Name));
+                        <div class="col-lg-3 col-md-6 col-xs-6 teacher-card" data-categories="@categories">
+                            <div class="teach-box">
+                                <div class="img-box">
+                                    <a href="">
+                                        <img src="~/assets/images/teachers/@item.Image" alt="@item.FullName" />
+                                    </a>
+                                    <div class="social-icon">
+                                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                        <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
+                                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                                <div class="title-box">
+                                    <a href="#" class="name-a">
+                                        <h3 class="name">@item.FullName</h3>
+                                    </a>
+                                    <span>@item.Courses.FirstOrDefault()?.Name</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="partner">
+        <div class="container">
+            <div class="owl-carousel five-slider">
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/1.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/2.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/3.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/4.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/5.png"
+                         alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

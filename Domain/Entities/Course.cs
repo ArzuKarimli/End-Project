@@ -18,6 +18,7 @@ namespace Domain.Entities
         public string Level { get; set; }
         public int Lesson { get; set; }
         public string Image { get; set; }
+        public bool IsMain { get; set; } = false;
         public int Rating { get; set; }
         public int Class {  get; set; }
         public int Student {  get; set; }

@@ -8,13 +8,14 @@ namespace app.Controllers
     public class CourseController : Controller
     {
         private readonly ICourseService _courseService;
+       
         public CourseController(ICourseService courseService)
         {
             _courseService = courseService;
         }
         public async Task<IActionResult> Index()
         {
-            var courses= await _courseService.GetAllWithCategories();
+            var courses= await _courseService.GetAllWithCategoriesAsync();
             CourseVM model = new()
             {
                 Courses = courses.ToList(),
@@ -26,7 +27,8 @@ namespace app.Controllers
             if (id is null) return BadRequest();
             Course course = await _courseService.GetByIdWithCategory((int)id);
             if (course == null) return NotFound();
-            var courses= await _courseService.GetAllWithCategories();
+            var courses= await _courseService.GetAllWithCategoriesAsync();
+           
             CourseDetailVM model = new()
             {
                 Course = course,

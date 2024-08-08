@@ -347,6 +347,9 @@ body {
   text-decoration: none;
   font-weight: 700;
 }
+#teachers .team-area .team-box ul li .active {
+  color: #e41f05;
+}
 #teachers .team-area .teach-box {
   margin-bottom: 30px;
   width: 306px;

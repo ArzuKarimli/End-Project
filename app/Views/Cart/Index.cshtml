@@ -1,0 +1,79 @@
+﻿@model List<CartVM>
+@{
+    ViewData["Title"] = "Index";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/cart.css" />
+}
+<main>
+    <section id="cart">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h2>Shopping Cart</h2>
+            </div>
+            <div class="cart-items">
+                @foreach (var item in Model)
+                {
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="~/assets/images/Products-images/@item.Image" alt="Product Image">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">@item.Name</h3>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <span class="btn-minus" data-id="@item.Id">-</span>
+                            <input type="number" value="@item.Count" min="1" readonly>
+                            <span class="btn-plus" data-id="@item.Id">+</span>
+                        </div>
+                        <div class="cart-item-price">
+                            <p>₼<span class="product-price">@item.Price</span></p>
+                        </div>
+                        <div class="cart-item-remove">
+                            <button><i class="fas fa-trash" data-id="@item.Id"></i></button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="cart-summary-item">
+                    <span>Total Items:</span>
+                    <span>@Model.Count</span>
+                </div>
+                <div class="cart-summary-item">
+                    <span>Total Price:</span>
+                    <span>₼<span class="total-price">@Model.Sum(m => m.TotalPrice)</span></span>
+                </div>
+                <button class="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="partner">
+        <div class="container">
+            <div class="owl-carousel five-slider">
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/1.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/2.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/3.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/4.png"
+                         alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/5.png"
+                         alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

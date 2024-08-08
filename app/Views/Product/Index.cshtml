@@ -1,0 +1,94 @@
+﻿@model ProductVM
+@{
+    ViewData["Title"] = "Index";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/shop.css" />
+}
+
+<main>
+    @Html.Partial("_PresentationModalView", Model)
+    <section id="product">
+        <div class="container">
+          
+                <div class="row">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="filters">
+                            <div class="filter-category">
+                                <h3>Categories</h3>
+                             
+                                <select id="categoryId" name="category">
+                                    <option value="">All Categories</option>
+                                    @foreach (var category in Model.ProductCategories)
+                                    {
+                                        <option value="@category.Id">@category.Name</option>
+                                    }
+                                </select>
+                           
+                            </div>
+                            <div class="filter-price-range">
+                                <h3>Price Range</h3>
+                                <input type="range" id="price" name="price" min="0" max="300" value="300">
+                                <div class="price-values">
+                                    <span id="min-price">₼0</span>
+                                    <span id="max-price">₼300</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8">
+                    <div class="search">
+                        <h3>Search Product:</h3>
+                        <div class="search-container">
+                            <input type="text" class="search-input" id="search-input" placeholder="Search...">
+                            <button class="search-button" id="search-button">Search</button>
+                        </div>
+                        <div id="search-results">
+                          
+                        </div>
+                       </div>
+                        <div class="sorted">
+                        <select id="sort" name="sort">
+                            <option value="relevance">Relevance</option>
+                            <option value="price-low-high">Price: Low to High</option>
+                            <option value="price-high-low">Price: High to Low</option>
+                            <option value="az">A To Z</option>
+                            <option value="za">Z To A</option>
+                        </select>
+
+                        <div id="product-list" class="row products-carts">
+                            @Html.Partial("_ProductList", Model)
+                        </div>
+                    </div>
+                </div>
+         </div>
+        </div>
+    </section>
+
+    <section id="partner">
+        <div class="container">
+            <div class="owl-carousel five-slider">
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/1.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/2.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/3.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/4.png" alt="">
+                </div>
+                <div class="item1">
+                    <img src="http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/5.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+

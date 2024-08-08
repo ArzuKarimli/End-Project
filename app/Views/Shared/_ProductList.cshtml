@@ -1,0 +1,52 @@
+﻿@model ProductVM
+
+<div id="product-list" class="row products-carts">
+    @if (Model.Products != null && Model.Products.Any())
+    {
+        @foreach (var item in Model.Products)
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="product-cart">
+                    <div class="image">
+                        <a href="">
+                            <img src="~/assets/images/Products-images/@item.ProductImages.FirstOrDefault()?.Name" alt="">
+                        </a>
+                        <div class="cart-icon">
+                            <ul class="icons">
+                                
+                                <li><a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="triangle"></div>
+                    <h4><a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a></h4>
+                    <div class="product-rating">
+                        <span class="stars">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                if (i <= Math.Floor(item.Rating))
+                                {
+                                    <i class="fa-solid fa-star" style="color: #dc3f2e;"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa-regular fa-star" style="color: #dc3f2e;"></i>
+                                }
+                            }
+                        </span>
+                        <span class="rating-count">(@item.SalesCount reviews)</span>
+                    </div>
+                    <div class="cart-title">
+                        <span>From ₼@item.Price</span>
+                        <a data-id="@item.Id" class="add-to-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No products available</p>
+    }
+</div>
+
