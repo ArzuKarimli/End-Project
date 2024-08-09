@@ -150,22 +150,27 @@ $(document).ready(function () {
     });
 
     $(document).ready(function () {
-        $('#search-button').on('click', function () {
+        $('#search-button').on('click', function (e) {
+            e.preventDefault(); 
             var query = $('#search-input').val();
-        
-            $.ajax({
-                url: '@Url.Action("Search", "Product")',
-                type: 'GET',
-                data: { request: query },
-                success: function (result) {
-                    $('#search-results').html(result);
-                },
-                error: function () {
-                    $('#search-results').html('<p>An error occurred</p>');
-                }
-            });
+            if (query) {
+                $.ajax({
+                    url: "/product/Search",
+                    type: 'GET',
+                    data: { request: query },
+                    success: function (result) {
+                        $('#search-results').html(result);
+                    },
+                    error: function () {
+                        $('#search-results').html('<p>An error occurred</p>');
+                    }
+                });
+            } else {
+                alert("Please enter a search term.");
+            }
         });
     });
+
 
 
 });

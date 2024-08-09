@@ -11,7 +11,7 @@ namespace Service.ViewModel.ProductPage
     {
         public List<Product> Products { get; set; }
         public List<ProductCategory> ProductCategories { get; set; }
-        public List<Product> SearchProduct { get; set; } = new List<Product>();
+     
         public Product Product { get; set; }
         public List<CartVM> AddedProducts { get; set; }
     }

@@ -37,35 +37,7 @@
             </div>
         </div>
 
-        <div class="edulearn">
-            <div class="container">
-                <div class="row">
-                    <div class="col-4 ">
-                        <div class="d-flex">
-                            <i class="fas fa-envelope-open-text mail mx-3"></i>
-                            <div>
-                                <span class="elemspan">Mail Us</span>
-                                <p class="domain">info@domain.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 d-flex align-items-start justify-content-center et">
-                        <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/logo.png">
-                    </div>
-                    <div class="col-4 is">
-                        <div class="d-flex callus">
-                            <i class="fas fa-phone-alt icon-volume"></i>
-                            <div>
-                                <p class="d-block pelement ">Call Us</p>
-                                <p class="number">+1234-567-890</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
+        @await Component.InvokeAsync("BaseHeader")
 
         <nav id="nav-bar">
             <div class="container">

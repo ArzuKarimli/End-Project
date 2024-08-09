@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Repository.Repositories
 {
@@ -33,8 +34,10 @@ namespace Repository.Repositories
         public async Task<IEnumerable<Product>> SearchProductAsync(string searchText)
         {
             return await _entities.Include(p => p.Category)
-                                         .Where(p => p.Name.Contains(searchText) || p.Category.Name.Contains(searchText))
-                                         .ToListAsync();
+                                                      .Where(p => p.Name.Contains(searchText) || p.Category.Name.Contains(searchText))
+                                                      .ToListAsync();
+
         }
+
     }
 }

@@ -61,6 +61,7 @@ namespace app.Controllers
             {
                 products = products.Where(p => p.Category.Id == categoryId.Value);
             }
+         
 
             if (price.HasValue && price.Value > 0)
             {
@@ -114,12 +115,20 @@ namespace app.Controllers
         public async Task<IActionResult> Search(string request)
         {
             var products = await _productService.SearchProductAsync(request);
+            if (products == null)
+            {
+                products = new List<Product>();
+            }
+           
+            //List<ProductCategory> categories = (List<ProductCategory>)await _categoryService.GetAllAsync();
             ProductVM model = new()
             {
-                Products = products.ToList(),           
+                Products = products.ToList(),  
+                //ProductCategories= categories.ToList(),
             };
             return PartialView("_ProductList", model);
         }
+   
 
 
 

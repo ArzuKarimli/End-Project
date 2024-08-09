@@ -38,16 +38,20 @@
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-8">
+                    <form id="search-form" asp-action="Search" asp-controller="Product" method="get">
                     <div class="search">
                         <h3>Search Product:</h3>
-                        <div class="search-container">
-                            <input type="text" class="search-input" id="search-input" placeholder="Search...">
-                            <button class="search-button" id="search-button">Search</button>
+                        <div class="search-container">                          
+                                <input type="text" class="search-input" id="search-input" name="request" placeholder="Search...">
+                                <button type="submit" class="search-button" id="search-button">Search</button>                           
+
                         </div>
+                        
                         <div id="search-results">
                           
                         </div>
                        </div>
+                    </form>
                         <div class="sorted">
                         <select id="sort" name="sort">
                             <option value="relevance">Relevance</option>

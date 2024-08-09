@@ -27,6 +27,7 @@ namespace Service
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICartService,CartService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IAccountService, AccountService>();
             return services;
         }
 
