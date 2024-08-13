@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Repository.Repositories
@@ -15,6 +16,11 @@ namespace Repository.Repositories
     public class ProductRepository:BaseRepository<Product>,IProductRepository
     {
         public ProductRepository(AppDbContext dbContext):base(dbContext) { }
+
+        public async Task<List<Product>> GetAllPaginationAsync(int page, int take = 4)
+        {
+            return await _entities.Include(m => m.Category).Include(m => m.ProductImages).Skip((page - 1) * take).Take(take).ToListAsync();
+        }
 
         public async Task<IEnumerable<Product>> GetAllWithCategoryAndProductImages()
         {
@@ -28,7 +34,18 @@ namespace Repository.Repositories
         {
             return await _entities
                 .IncludeMultiple(p => p.ProductImages)
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task<int> GetCountAsync()
+        {
+           return await _entities.CountAsync();
+        }
+
+        public async Task<List<Product>> GetProductsByCategoryIdAsync(int id)
+        {
+            return await _entities.Where(m => m.CategoryId == id).ToListAsync();
         }
 
         public async Task<IEnumerable<Product>> SearchProductAsync(string searchText)

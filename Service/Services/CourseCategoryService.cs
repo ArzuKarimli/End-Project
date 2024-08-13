@@ -16,9 +16,35 @@ namespace Service.Services
         {
             _courseCategoryRepository = courseCategoryRepository;
         }
+
+        public async Task CreateAsync(CourseCategory category)
+        {
+            await _courseCategoryRepository.CreateAsync(category);
+        }
+
+        public async Task DeleteAsync(CourseCategory category)
+        {
+            await _courseCategoryRepository.DeleteAsync(category);
+        }
+
+        public async Task EditAsync(CourseCategory category)
+        {
+           await _courseCategoryRepository.UpdateAsync(category);
+        }
+
+        public async Task<bool> ExistAsync(string name)
+        {
+          return  await _courseCategoryRepository.ExistAsync(name);
+        }
+
         public async Task<IEnumerable<CourseCategory>> GetAllAsync()
         {
             return await _courseCategoryRepository.GetAllAsync();
+        }
+
+        public async Task<CourseCategory> GetByIdAsync(int id)
+        {
+           return await _courseCategoryRepository.GetByIdAsync(id);
         }
     }
 }

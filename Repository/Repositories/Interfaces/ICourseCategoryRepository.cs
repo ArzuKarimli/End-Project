@@ -9,5 +9,6 @@ namespace Repository.Repositories.Interfaces
 {
     public interface ICourseCategoryRepository:IBaseRepository<CourseCategory>
     {
+        Task<bool> ExistAsync(string name);
     }
 }

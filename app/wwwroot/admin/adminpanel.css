@@ -63,5 +63,21 @@
 .btn-info {
     background-color: #17a2b8; /* Detail buton rengi */
 }
-
+.card-img-top {
+    width: 100%;
+    height: 250px; /* You can adjust the height based on your preference */
+    object-fit: contain; /* Ensures the image covers the area without distortion */
+    border-radius: 5px; /* Optional: adds rounded corners */
 }
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card {
+    height: 100%;
+}
+

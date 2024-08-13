@@ -10,5 +10,10 @@ namespace Service.Services.Interfaces
     public interface ICourseCategoryService
     {
         Task<IEnumerable<CourseCategory>> GetAllAsync();
+        Task DeleteAsync(CourseCategory category);
+        Task EditAsync(CourseCategory category);
+        Task<bool> ExistAsync(string name);
+        Task CreateAsync(CourseCategory category);
+        Task<CourseCategory> GetByIdAsync(int id);
     }
 }

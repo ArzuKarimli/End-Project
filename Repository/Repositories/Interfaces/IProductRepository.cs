@@ -12,5 +12,8 @@ namespace Repository.Repositories.Interfaces
         Task<IEnumerable<Product>> GetAllWithCategoryAndProductImages();
         Task<Product> GetByIdWithImagesAsync(int id);
         Task<IEnumerable<Product>> SearchProductAsync(string searchText);
+        Task<List<Product>> GetAllPaginationAsync(int page, int take = 4);
+        Task<int> GetCountAsync();
+        Task<List<Product>> GetProductsByCategoryIdAsync(int id);
     }
 }

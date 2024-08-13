@@ -1,13 +1,13 @@
-﻿@model CategoryDetailVM
+﻿@model CourseCategoryDetailVM
 @{
     ViewData["Title"] = "Detail";
-
+   
 }
 
 <div class="container">
     <div class="card">
         <label class="input">
-            <h5>Product Category Name:</h5>
+            <h5>Course Category Name:</h5>
             <input asp-for="Name" class="input__field field" type="text" disabled />
 
         </label>
@@ -17,9 +17,6 @@
         </div>
 
 
-        @if (Model.ProductCount != 0)
-        {
-            <h4>Product count : @Model.ProductCount</h4>
-        }
     </div>
 </div>
+
