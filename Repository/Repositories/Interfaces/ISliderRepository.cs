@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace Repository.Repositories.Interfaces
 {
     public interface ISliderRepository:IBaseRepository<Slider>
     {
-       
+      Task<IEnumerable<Slider>> GetAllWithInfoAsync();
+      Task<Slider> GetByIdWithInfoAsync(int id);
+     
     }
 }
 

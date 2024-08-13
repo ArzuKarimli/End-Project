@@ -18,7 +18,7 @@ namespace app.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
-
+      
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _LoginManager;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -39,6 +39,7 @@ namespace app.Controllers
         }
         public async Task<IActionResult> SignUp(RegisterVM request)
         {
+
             AppUser user = new()
             {
                 UserName = request.Username,
@@ -72,7 +73,7 @@ namespace app.Controllers
 
                 var smtp = new MailKit.Net.Smtp.SmtpClient();
                 smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                smtp.Authenticate("arzusk@code.edu.az", "pmwr wdrq jvgu ncyc");
+                smtp.Authenticate("arzusk@code.edu.az", "zxfg txje viix nnmf");
                 await smtp.SendAsync(email);
                 smtp.Disconnect(true);
             }
@@ -114,7 +115,7 @@ namespace app.Controllers
                 return View(request);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(VerifyEmail));
         }
         [HttpPost]
         public async Task<IActionResult> Logout()
@@ -122,6 +123,10 @@ namespace app.Controllers
             await _accountService.Logout();
             return RedirectToAction("Index", "Home");
         }
+
+
     }
+
+
 }
 

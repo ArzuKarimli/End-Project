@@ -1,5 +1,5 @@
 ﻿
-    using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.IO;
 
 namespace app.Areas.Admin.Helpers.Extentions
@@ -31,13 +31,21 @@ namespace app.Areas.Admin.Helpers.Extentions
             }
         }
 
-        
-       public static string GenerateFilePath(this IFormFile image, IWebHostEnvironment env)
-       {
-                string fileName = Guid.NewGuid().ToString() + "-" + image.FileName;
-                string path = Path.Combine(env.WebRootPath, "img", fileName);
-               return fileName;
+
+        public static string GenerateFilePath(this IFormFile image, IWebHostEnvironment env)
+        {
+            string fileName = Guid.NewGuid().ToString() + "-" + image.FileName;
+            string directoryPath = Path.Combine(env.WebRootPath, "assets/images");
+
+           
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            string path = Path.Combine(directoryPath, fileName);
+            return path;
         }
-        
+
     }
 }

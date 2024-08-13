@@ -74,9 +74,13 @@ body {
 
 
 .edulearn {
-  padding: 15px;
-  background-color: white;
-  margin-top: 15px;
+    padding: 15px;
+    background-color: white;
+    margin-top: 15px;
+
+    .phone {
+        float: right;
+    }
 }
 
 .edulearn--fix {
@@ -117,9 +121,9 @@ body {
 }
 
 .icon-volume {
-  font-size: 40px;
-  color: #ff3115;
-  margin-right: 15px;
+    font-size: 40px;
+    color: #ff3115;
+    margin-right: 15px;
 }
 
 .pelement {

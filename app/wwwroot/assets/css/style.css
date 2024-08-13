@@ -80,15 +80,18 @@ body {
   padding: 15px;
   background-color: white;
   margin-top: 15px;
-}
 
+}
+.edulearn .phone{
+    float:right;
+}
 .edulearn--fix {
   margin-bottom: 50px;
 }
 
 .mail {
-  color: red;
-  font-size: 40px;
+    color: red;
+    font-size: 40px;
 }
 
 .callus {

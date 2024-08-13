@@ -15,7 +15,7 @@ namespace Repository.Repositories
     {
         protected readonly AppDbContext _dbcontext;
         protected readonly DbSet<T> _entities;
-
+       
         public BaseRepository(AppDbContext dbcontext)
         {
             _dbcontext = dbcontext;
