@@ -1,0 +1,53 @@
+﻿@model ProductCreateVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container mt-5 ml-3">
+<h3>Create Product:</h3>
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="card p-3">
+        <div class="form-group">
+            <h5>Name</h5>
+            <input asp-for="Name" class="form-control" placeholder="Name" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <h5>Price</h5>
+            <input asp-for="Price" class="form-control" type="number" step="any" placeholder="Price" />
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+        <div class="form-group">
+            <h5>Description</h5>
+            <input asp-for="Description" class="form-control" placeholder="Description" />
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        <div class="form-group">
+            <h5>Category</h5>
+            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
+            </select>
+            <span class="text-danger" asp-validation-for="CategoryId"></span>
+        </div>
+        <div class="form-group">
+            <h5>Weight</h5>
+            <input asp-for="Weight" class="form-control" type="number" step="any" placeholder="Weight" />
+            <span class="text-danger" asp-validation-for="Weight"></span>
+        </div>
+        <div class="form-group">
+            <h5>Material</h5>
+            <input asp-for="Material" class="form-control" placeholder="Material" />
+            <span class="text-danger" asp-validation-for="Material"></span>
+        </div>
+        <div class="form-group">
+            <h5>Images</h5>
+            <input asp-for="Images" class="form-control" type="file" multiple />
+            <span class="text-danger" asp-validation-for="Images"></span>
+        </div>
+        <div class="button-group mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a class="btn btn-warning" asp-action="Index">Back</a>
+        </div>
+    </div>
+</form>
+</div>
+

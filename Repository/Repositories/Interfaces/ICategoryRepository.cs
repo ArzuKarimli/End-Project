@@ -1,9 +1,6 @@
 ﻿using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Repository.Repositories.Interfaces
 {
@@ -12,5 +9,6 @@ namespace Repository.Repositories.Interfaces
         Task<IEnumerable<ProductCategory>> GetAllOrderByDescendingAsync();
         Task<bool> ExistAsync(string name);
         Task<ProductCategory> GetWithProductAsync(int id);
+        Task<IEnumerable<SelectListItem>> GetAllSelectAsync();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository.Repositories.Interfaces;
 using Service.Services.Interfaces;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Service.Services
 {
@@ -45,6 +47,11 @@ namespace Service.Services
         public async Task<IEnumerable<ProductCategory>> GetAllOrderByDescendingAsync()
         {
            return await _categoryRepository.GetAllOrderByDescendingAsync();
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetAllSelectAsync()
+        {
+            return await _categoryRepository.GetAllSelectAsync();
         }
 
         public async Task<ProductCategory> GetByIdAsync(int id)

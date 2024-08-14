@@ -1,9 +1,11 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Service.Services.Interfaces
 {
@@ -17,5 +19,6 @@ namespace Service.Services.Interfaces
         Task DeleteAsync(ProductCategory category);
         Task EditAsync(ProductCategory category);
         Task<ProductCategory> GetByIdAsync(int id);
+        Task<IEnumerable<SelectListItem>> GetAllSelectAsync();
     }
 }

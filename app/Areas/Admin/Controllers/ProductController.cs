@@ -103,6 +103,126 @@ namespace app.Areas.Admin.Controllers
             await _productService.DeleteAsync(product);
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            ViewBag.Categories = await _categoryService.GetAllSelectAsync();
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+     
+        public async Task<IActionResult> Create(ProductCreateVM request)
+        {
+            ViewBag.Categories = await _categoryService.GetAllSelectAsync();
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
 
+            foreach (var item in request.Images)
+            {
+                if (!item.CheckFileSize(500))
+                {
+                    ModelState.AddModelError("Images", "Image size be must max 500 kb");
+                    return View();
+                }
+                if (!item.CheckFileType("image/"))
+                {
+                    ModelState.AddModelError("Images", "File type must be only image");
+                    return View();
+                }
+            }
+
+            List<ProductImage> images = new();
+
+            foreach (var item in request.Images)
+            {
+                string filaName = Guid.NewGuid().ToString() + "-" + item.FileName;
+                string path = Path.Combine(_env.WebRootPath, "assets/images", filaName);
+                await item.SaveFileToLocalAsync(path);
+                images.Add(new ProductImage
+                {
+                    Name = filaName,
+                });
+            }
+            images.FirstOrDefault().IsMain = true;
+            Product product = new()
+            {
+                Name = request.Name,
+                Description = request.Description,
+                Price = decimal.Parse(request.Price.ToString().Replace(".", ",")),
+                CategoryId = request.CategoryId,
+                Weight = request.Weight,
+                Material = request.Material,
+                ProductImages = images,
+                
+            };
+
+            await _productService.CreateAsync(product);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+       
+        public async Task<IActionResult> Edit(int? id)
+        {
+            ViewBag.categories = await _categoryService.GetAllSelectAsync();
+
+            if (id is null) return BadRequest();
+            Product product = await _productService.GetByIdAsync((int)id);
+            if (product == null) return NotFound();
+            ProductEditVM model = new()
+            {
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                Weight = product.Weight,
+                Material = product.Material,           
+                CategoryId = product.CategoryId,             
+                Images = product.ProductImages.Select(m => new ProductImageVM
+                {                   
+                    Image = m.Name,
+                    IsMain = m.IsMain,
+                }).ToList(),
+
+            };
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        
+        public async Task<IActionResult> Edit(int? id, ProductEditVM editProduct)
+        {
+            ViewBag.categories = await _categoryService.GetAllSelectAsync();
+
+            if (id is null) return BadRequest();
+
+
+            Product product = await _productService.GetByIdAsync((int)id);
+            if (product == null) return NotFound();
+            foreach (var item in product.ProductImages)
+            {
+                string path = Path.Combine(_env.WebRootPath, "assets/images", item.Name);
+                path.DeleteFileFromLocal();
+            }
+            List<ProductImage> images = new();
+
+            foreach (var item in editProduct.NewImages)
+            {
+                string filaName = Guid.NewGuid().ToString() + "-" + item.FileName;
+                string path = Path.Combine(_env.WebRootPath, "assets/images", filaName);
+                await item.SaveFileToLocalAsync(path);
+                images.Add(new ProductImage
+                {
+                    Name = filaName,
+                });
+            }
+
+            product.ProductImages = images;
+            await _productService.UpdateAsync(product);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

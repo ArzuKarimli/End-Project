@@ -172,7 +172,52 @@ $(document).ready(function () {
     });
 
 
+    $(document).ready(function () {
+        $('.card-box').show();
 
+        $('#tabMenu li a').on('click', function (e) {
+            e.preventDefault(); 
+            var category = $(this).data('category');
+            $('#tabMenu li').removeClass('active');
+            $(this).parent().addClass('active');
+            if (category === 'ALL') {
+                $('.card-box').show(); 
+            } else {
+                $('.card-box').each(function () {
+                    var courseCategory = $(this).data('category');
+                    if (courseCategory === category) {
+                        $(this).show(); 
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('.teacher-card').show();
+        $('#tabMenu li a').on('click', function (e) {
+            e.preventDefault(); 
+
+            var category = $(this).data('category');
+            $('#tabMenu li').removeClass('active');
+            $(this).parent().addClass('active');
+
+            if (category === 'ALL') {
+                $('.teacher-card').show(); 
+            } else {
+                $('.teacher-card').each(function () {
+                    var teacherCategories = $(this).data('categories').split(' ');
+                    if (teacherCategories.includes(category)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    });
 });
 
 

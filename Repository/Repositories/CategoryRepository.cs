@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Repositories.Interfaces;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Repository.Repositories
 {
@@ -24,6 +26,18 @@ namespace Repository.Repositories
             var categories = await _entities.OrderByDescending(m => m.Id).ToListAsync();
             return categories;
         }
+        public async Task<IEnumerable<SelectListItem>> GetAllSelectAsync()
+        {
+            List<ProductCategory> categories = await _entities.ToListAsync();
+
+            return categories.Select(c => new SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = c.Name
+            }).ToList();
+        }
+
+
 
         public async Task<ProductCategory> GetWithProductAsync(int id)
         {

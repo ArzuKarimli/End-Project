@@ -19,7 +19,7 @@
                             @foreach (var category in Model.Courses.Select(m => m.CourseCategory.Name).Distinct())
                             {
                                 <li class="@(ViewBag.ActiveTab == category ? "active" : "")">
-                                    <a data-category="@category">@category</a>
+                                    <a href="" data-category="@category">@category</a>
                                 </li>
                             }
                         </ul>
@@ -32,7 +32,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 card-box" data-category="@item.CourseCategory.Name">
                         <div class="course-card">
                             <div class="card-img">
-                                <img src="~/assets/images/courses/@item.Image" alt="">
+                                <img src="~/assets/images/@item.Image" alt="">
                                 <span class="course-price">$@item.Price</span>
                                 <div class="course-info">
                                     <h4><a href="">@item.CourseCategory.Name</a></h4>
