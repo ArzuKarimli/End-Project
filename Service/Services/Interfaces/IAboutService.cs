@@ -10,5 +10,9 @@ namespace Service.Services.Interfaces
     public interface IAboutService
     {
         Task<IEnumerable<About>> GetAllAsync();
+        Task DeleteAsync(About model);
+        Task CreateAsync(About model);
+        Task UpdateAsync(About model);
+        Task<About> GetByIdAsync(int id);
     }
 }

@@ -5,6 +5,7 @@ using Service.ViewModel.AboutPage;
 
 namespace app.Controllers
 {
+   
     public class AboutController : Controller
     {
        private readonly IAboutService _aboutService;

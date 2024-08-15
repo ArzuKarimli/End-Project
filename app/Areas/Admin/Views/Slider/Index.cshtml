@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 }
 <link href="~/admin/adminpanel.css" rel="stylesheet" />
+
     <div class="table-responsive">
+    <a class="btn btn-success mx-5 mt-5 " asp-area="Admin" asp-controller="Slider" asp-action="Create">
+        <i class="fa-solid fa-circle-plus"></i>
+    </a>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -24,7 +28,6 @@
 
                     <td>@item.SliderInfo.Title</td>
                     <td>@item.SliderInfo.Description</td>
-
                     <td>
                         <div class="btns d-flex">
                             <a class="btn btn-info mx-1" asp-action="Detail" asp-route-id="@item.Id">Detail</a>

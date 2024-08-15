@@ -33,8 +33,9 @@
         color: #343a40; /* Başlık metin rengi */
         font-weight: bold; /* Başlık metin kalınlığı */
         border-bottom: 2px solid #dee2e6; /* Başlık alt çizgisi */
+       
     }
-
+   }
     .table td img.custom-image {
         width: 100px; /* Resim genişliği */
         height: auto; /* Resim yüksekliğini otomatik ayarlar */

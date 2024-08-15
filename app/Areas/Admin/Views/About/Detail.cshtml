@@ -1,0 +1,32 @@
+﻿@model AboutDetailVM
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row gx-5">
+            <aside class="col-lg-6">
+                <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                    <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image">
+                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="~/assets/images/@Model.Image" />
+                    </a>
+                </div>
+
+
+            </aside>
+            <main class="col-lg-6">
+                <div class="ps-lg-3">
+                    <h4 class="title text-white-50">
+                        @Model.SectionName
+                    </h4>
+                    <p>
+                        @Model.Description
+                    </p>
+
+                <a class="btn btn-success" asp-action="Index">Back</a>
+            </main>
+        </div>
+    </div>
+</section>
+

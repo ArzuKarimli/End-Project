@@ -16,9 +16,30 @@ namespace Service.Services
         {
             _aboutRepository = aboutRepository;
         }
-        public async Task<IEnumerable<About>> GetAllAsync()
+
+        public async Task CreateAsync(About model)
+        {
+            await _aboutRepository.CreateAsync(model);
+        }
+
+        public async Task DeleteAsync(About model)
+        {
+          await _aboutRepository.DeleteAsync(model);
+        }
+
+        public  async Task<IEnumerable<About>> GetAllAsync()
         {
            return await _aboutRepository.GetAllAsync(); 
+        }
+
+        public async Task<About> GetByIdAsync(int id)
+        {
+           return await _aboutRepository.GetByIdAsync(id);
+        }
+
+        public async Task UpdateAsync(About model)
+        {
+           await _aboutRepository.UpdateAsync(model);
         }
     }
 }

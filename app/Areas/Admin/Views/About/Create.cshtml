@@ -1,0 +1,34 @@
+﻿@model AboutCreateVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container mt-5 ml-3">
+    <h3>Create :</h3>
+    <form method="post" asp-action="Create" enctype="multipart/form-data">
+        <div class="card p-3">
+            <div class="form-group">
+                <h5>Name</h5>
+                <input asp-for="SectionName" class="form-control" placeholder="SectionName" />
+                <span class="text-danger" asp-validation-for="SectionName"></span>
+            </div>
+          
+            <div class="form-group">
+                <h5>Description</h5>
+                <input asp-for="Description" class="form-control" placeholder="Description" />
+                <span class="text-danger" asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <h5>Images</h5>
+                <input asp-for="Images" class="form-control" type="file" multiple />
+                <span class="text-danger" asp-validation-for="Images"></span>
+            </div>
+            <div class="button-group mt-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-warning" asp-action="Index">Back</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
