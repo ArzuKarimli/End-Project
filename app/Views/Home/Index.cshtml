@@ -113,141 +113,54 @@
             </div>
             <div>
                 <div class="owl-carousel owl-theme second-slider">
-                    <div class="item">
-                        <div class="general">
-                            <div class="item-header">
-                                <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/courses/1.jpg">
-                                <a href="">
-                                    <i>$450</i>
-                                </a>
-                                <div class="over-div"><i class="fas fa-link"></i></div>
-                            </div>
-                            <div class="item-body">
-                                <a class="science-a" href="">Science</a>
-                                <h4><a href=" ">Civil Engineering</a></h4>
-                                <div class="review-wrap">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <span>22 Reviews</span>
+                    @foreach (var item in Model.Courses)
+                    {
+                        <div class="item">
+                            <div class="general">
+                                <div class="item-header">
+                                    <img src="~/assets/images/@item.Image">
+                                    <a href="">
+                                        <i>$@item.Price</i>
+                                    </a>
+                                    <div class="over-div"><i class="fas fa-link"></i></div>
                                 </div>
-                                <div class="course-dec mt-3">
-                                    <p>
-                                        Cras ultricies lacus consectetur, consectetur<br />
-                                        scelerisque arcu curabitur
-                                    </p>
+                                <div class="item-body">
+                                    <a class="science-a" href="">@item.CourseCategory.Name</a>
+                                    <h4><a href=" ">@item.Name</a></h4>
+                                    <div class="review-wrap">
+                                        <ul>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star-half-alt"></i></li>
+                                        </ul>
+                                        <span>22 Reviews</span>
+                                    </div>
+                                    <div class="course-dec mt-3">
+                                        <p>
+                                            @item.Description
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-footer">
-                                <div class="course-time">
-                                    <span class="label">Course time</span>
-                                    <span class="rating">3.5 Years</span>
-                                </div>
-                                <div class="course-student">
-                                    <span class="label">Course Student</span>
-                                    <span class="rating">80</span>
-                                </div>
-                                <div class="course-duration">
-                                    <span class="label">Class Duration</span>
-                                    <span class="rating">8:30-4:00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="general">
-                            <div class="item-header">
-                                <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/courses/3.jpg">
-                                <a href="">
-                                    <i>$450</i>
-                                </a>
-                                <div class="over-div"><i class="fas fa-link"></i></div>
-                            </div>
-                            <div class="item-body">
-                                <a class="science-a" href="">Science</a>
-                                <h4><a href=" ">Electrical Engineering</a></h4>
-                                <div class="review-wrap">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <span>25 Reviews</span>
-                                </div>
-                                <div class="course-dec mt-3">
-                                    <p>
-                                        Cras ultricies lacus consectetur, consectetur<br />
-                                        scelerisque arcu curabitur
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-footer">
-                                <div class="course-time">
-                                    <span class="label">Course time</span>
-                                    <span class="rating">3.5 Years</span>
-                                </div>
-                                <div class="course-student">
-                                    <span class="label">Course Student</span>
-                                    <span class="rating">80</span>
-                                </div>
-                                <div class="course-duration">
-                                    <span class="label">Class Duration</span>
-                                    <span class="rating">8:30-4:00</span>
+                                <div class="item-footer">
+                                    <div class="course-time">
+                                        <span class="label">Course time</span>
+                                        <span class="rating">@item.Duration Years</span>
+                                    </div>
+                                    <div class="course-student">
+                                        <span class="label">Course Student</span>
+                                        <span class="rating">@item.Student</span>
+                                    </div>
+                                    <div class="course-duration">
+                                        <span class="label">Class Duration</span>
+                                        <span class="rating">@item.StartTime-@item.EndTime</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="general">
-                            <div class="item-header">
-                                <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/courses/2.jpg">
-                                <a href="">
-                                    <i>$450</i>
-                                </a>
-                                <div class="over-div"><i class="fas fa-link"></i></div>
-                            </div>
-                            <div class="item-body">
-                                <a class="science-a" href="">Science</a>
-                                <h4><a href=" ">Computer Engineering</a></h4>
-                                <div class="review-wrap">
-                                    <ul>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star-half-alt"></i></li>
-                                    </ul>
-                                    <span>39 Reviews</span>
-                                </div>
-                                <div class="course-dec mt-3">
-                                    <p>
-                                        Cras ultricies lacus consectetur, consectetur<br />
-                                        scelerisque arcu curabitur
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-footer">
-                                <div class="course-time">
-                                    <span class="label">Course time</span>
-                                    <span class="rating">3.5 Years</span>
-                                </div>
-                                <div class="course-student">
-                                    <span class="label">Course Student</span>
-                                    <span class="rating">80</span>
-                                </div>
-                                <div class="course-duration">
-                                    <span class="label">Class Duration</span>
-                                    <span class="rating">8:30-4:00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
+                   
                 </div>
             </div>
         </div>
@@ -321,117 +234,7 @@
             </div>
         </div>
     </section>
-    <section id="upcoming">
-        <section id="popular-courses">
-            <div class="container">
-                <div class="sec-title">
-                    <h2>OUR POPULAR COURSES</h2>
-                    <p>Fusce sem dolor, interdum in fficitur at, faucibus nec lorem. Sed nec molestie justo.</p>
-                    <div class="linediv"></div>
-                </div>
-                <div>
-                    <div class="owl-carousel owl-theme second-slider">
-                        <div class="item">
-                            <div class="general">
-                                <div class="item-header">
-                                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/events/1.jpg">
-                                    <div class="over-div"><i class="fas fa-link"></i></div>
-
-                                </div>
-                                <div class="item-footer">
-                                    <div class="work-shop">
-                                        <div class="work-date">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>28 June 2017</span>
-                                        </div>
-                                        <h4><a href="">PRACTICE WORKSHOP 2018</a></h4>
-                                        <div class="work-nav">
-                                            <div class="work-pm">
-                                                <i class="far fa-clock"></i>
-                                                <span>12.30AM-05.30PM</span>
-                                            </div>
-                                            <div class="work-country">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                                <span>Venue A, Main Campus</span>
-                                            </div>
-                                        </div>
-                                        <div class="join">
-                                            <a href="">Join Event </a>
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="general">
-                                <div class="item-header">
-                                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/events/2.jpg">
-                                    <div class="over-div"><i class="fas fa-link"></i></div>
-
-                                </div>
-                                <div class="item-footer">
-                                    <div class="work-shop">
-                                        <div class="work-date">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>28 June 2017</span>
-                                        </div>
-                                        <h4><a href="">PRACTICE WORKSHOP 2018</a></h4>
-                                        <div class="work-nav">
-                                            <div class="work-pm">
-                                                <i class="far fa-clock"></i>
-                                                <span>12.30AM-05.30PM</span>
-                                            </div>
-                                            <div class="work-country">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                                <span>Venue A, Main Campus</span>
-                                            </div>
-                                        </div>
-                                        <div class="join">
-                                            <a href="">Join Event </a>
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="general">
-                                <div class="item-header">
-                                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/events/3.jpg">
-                                    <div class="over-div"><i class="fas fa-link"></i></div>
-
-                                </div>
-                                <div class="item-footer">
-                                    <div class="work-shop">
-                                        <div class="work-date">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>28 June 2017</span>
-                                        </div>
-                                        <h4><a href="">PRACTICE WORKSHOP 2018</a></h4>
-                                        <div class="work-nav">
-                                            <div class="work-pm">
-                                                <i class="far fa-clock"></i>
-                                                <span>12.30AM-05.30PM</span>
-                                            </div>
-                                            <div class="work-country">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                                <span>Venue A, Main Campus</span>
-                                            </div>
-                                        </div>
-                                        <div class="join">
-                                            <a href="">Join Event </a>
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </section>
+  
     <section id="experienced">
         <section id="popular-courses">
             <div class="container">
@@ -442,57 +245,29 @@
                 </div>
                 <div>
                     <div class="owl-carousel owl-theme second-slider">
-                        <div class="item">
-                            <div class="general">
-                                <div class="item-header">
-                                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/team/3.jpg">
-                                    <div class="text-teamimg">
-                                        <h3 class="team-name">Mr.Mahabub Alam</h3>
-                                        <span class="span-name">Asistant.Professor</span>
-                                    </div>
+                      @foreach (var item in Model.Teachers)
+                        {
+                            <div class="item">
+                                <div class="general">
+                                    <div class="item-header">
+                                        <img src="~/assets/images/@item.Image">
+                                        <div class="text-teamimg">
+                                            <h3 class="team-name">@item.FullName</h3>
+                                            <span class="span-name">@item.Courses.Select(m=>m.Name).FirstOrDefault()</span>
+                                        </div>
 
-                                </div>
-                            </div>
-                            <div class="line-div text-center">
-                                <div class="professor">
-                                    <div class="centry">
-                                        <h4>Mr.Mahabub Alam</h4>
-                                        <p>Asistant Professor</p>
-                                        <span></span>
-                                        <p class="pelem">Entrusted with planning, implementation and evaluation.</p>
-                                        <div class="line-icons">
-                                            <a class="icons-line" href=""><i class="fab fa-facebook-f"></i></a>
-                                            <a class="icons-line" href=""><i class="fab fa-google-plus-g"></i></a>
-                                            <a class="icons-line" href=""><i class="fab fa-twitter"></i></a>
-                                            <a class="icons-line" href=""><i class="fab fa-pinterest-p"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="general">
-                                <div class="item-header">
-                                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/team/1.jpg">
-                                    <div class="text-teamimg">
-                                        <h3 class="team-name">ABD Rashid Khan</h3>
-                                        <span class="span-name">Vice Chancellor</span>
                                     </div>
                                 </div>
                                 <div class="line-div text-center">
                                     <div class="professor">
                                         <div class="centry">
-                                            <h4>Mr.Mahabub Alam</h4>
-                                            <p>Asistant Professor</p>
+                                            <h4>@item.FullName</h4>
+                                            <p>@item.Courses.Select(m => m.Name).FirstOrDefault()</p>
                                             <span></span>
-                                            <p class="pelem">
-                                                Entrusted with planning, implementation and evaluation.
-                                            </p>
+                                            <p class="pelem">Entrusted with planning, implementation and evaluation.</p>
                                             <div class="line-icons">
                                                 <a class="icons-line" href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="icons-line" href="">
-                                                    <i class="fab fa-google-plus-g"></i>
-                                                </a>
+                                                <a class="icons-line" href=""><i class="fab fa-google-plus-g"></i></a>
                                                 <a class="icons-line" href=""><i class="fab fa-twitter"></i></a>
                                                 <a class="icons-line" href=""><i class="fab fa-pinterest-p"></i></a>
                                             </div>
@@ -500,38 +275,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="general">
-                                <div class="item-header">
-                                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/team/2.jpg">
-                                    <div class="text-teamimg">
-                                        <h3 class="team-name">Luyes Figery</h3>
-                                        <span class="span-name">A.Professor</span>
-                                    </div>
-                                </div>
-                                <div class="line-div text-center">
-                                    <div class="professor">
-                                        <div class="centry">
-                                            <h4>Mr.Mahabub Alam</h4>
-                                            <p>Asistant Professor</p>
-                                            <span></span>
-                                            <p class="pelem">
-                                                Entrusted with planning, implementation and evaluation.
-                                            </p>
-                                            <div class="line-icons">
-                                                <a class="icons-line" href=""><i class="fab fa-facebook-f"></i></a>
-                                                <a class="icons-line" href="">
-                                                    <i class="fab fa-google-plus-g"></i>
-                                                </a>
-                                                <a class="icons-line" href=""><i class="fab fa-twitter"></i></a>
-                                                <a class="icons-line" href=""><i class="fab fa-pinterest-p"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        }
+                       
                     </div>
                 </div>
             </div>
@@ -672,7 +417,7 @@
     <section id="product">
         <div class="container">
             <div class="section-name">
-                <h2>OUR POPULAR COURSES</h2>
+                <h2> Our Products</h2>
                 <p>Fusce sem dolor, interdum in fficitur at, faucibus nec lorem. Sed nec molestie justo.</p>
                 <div class="linediv"></div>
             </div>
@@ -680,49 +425,24 @@
 
             <div class="owl-carousel owl-theme third-slider">
 
-                <div class="general">
-                    <div class="item-header">
-                        <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/products/1.jpg">
+             @foreach (var item in Model.Products.Take(3))
+                {
+                    <div class="general">
+                        <div class="item-header">
+                            <img src="~/assets/images/@item.ProductImages.FirstOrDefault().Name">
+                        </div>
+                        <h4><a href=" ">@item.Name</a></h4>
+                        <span>From:$@item.Price</span>
+                     
+
                     </div>
-                    <h4><a href=" ">Book Packages V2</a></h4>
-                    <span>From:$85.00</span>
-                    <div class="cart-div"><a href="">Add To Cart</a></div>
-
-                </div>
+                }
 
 
-                <div class="general">
-                    <div class="item-header">
-                        <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/products/2.jpg">
-                    </div>
-                    <h4><a href=" ">Book Packages V2</a></h4>
-                    <span>From:$85.00</span>
-                    <div class="cart-div"><a href="">Add To Cart</a></div>
-
-                </div>
-
-
-                <div class="general">
-                    <div class="item-header">
-                        <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/products/3.jpg">
-                    </div>
-                    <h4><a href=" ">Book Packages V2</a></h4>
-                    <span>From:$85.00</span>
-                    <div class="cart-div"><a href="">Add To Cart</a></div>
-                </div>
-
-                <div class="general">
-                    <div class="item-header">
-                        <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/products/4.jpg">
-                    </div>
-                    <h4><a href=" ">Book Packages V2</a></h4>
-                    <span>From:$85.00</span>
-                    <div class="cart-div"><a href="">Add To Cart</a></div>
-                </div>
 
             </div>
             <div class="view">
-                <a href="">View All</a>
+                <a asp-controller="Product" asp-action="Index">View All</a>
             </div>
         </div>
     </section>
@@ -832,23 +552,23 @@
         <div class="container">
             <div class="owl-carousel five-slider">
                 <div class="item1">
-                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/1.png"
+                    <img src="~/assets/images/1.png"
                          alt="">
                 </div>
                 <div class="item1">
-                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/2.png"
+                    <img src="~/assets/images/2.png"
                          alt="">
                 </div>
                 <div class="item1">
-                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/3.png"
+                    <img src="~/assets/images/3.png"
                          alt="">
                 </div>
                 <div class="item1">
-                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/4.png"
+                    <img src="~/assets/images/4.png"
                          alt="">
                 </div>
                 <div class="item1">
-                    <img src="https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/partner/5.png"
+                    <img src="~/assets/images/5.png"
                          alt="">
                 </div>
             </div>

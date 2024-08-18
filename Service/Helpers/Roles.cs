@@ -10,6 +10,7 @@ namespace Service.Helpers
     {
         SuperAdmin = 1,
         Admin = 2,
+        Teacher=3,
         Member
     }
 }

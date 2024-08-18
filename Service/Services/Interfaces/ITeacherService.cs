@@ -10,5 +10,10 @@ namespace Service.Services.Interfaces
     public interface ITeacherService
     {
         Task<IEnumerable<Teacher>> GetAllWithCoursesAsync();
+        Task DeleteAsync(Teacher teacher);
+        Task UpdateAsync(Teacher teacher);
+        Task CreateAsync(Teacher teacher);
+        Task<Teacher> GetByIdAsync(int id);
+        Task<Teacher> FindByFullNameAsync(string fullName);
     }
 }

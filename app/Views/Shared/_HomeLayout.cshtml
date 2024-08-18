@@ -17,25 +17,7 @@
 <body>
 
     <header>
-        <div class="apply">
-            <div class="container">
-                <div class="intro">
-                    <div class="d-flex ml-3 welcome-head">
-                        <i class="fas fa-university iconuni"></i>
-                        <p class="element-p">Welcome to Edulearn</p>
-                    </div>
-                    <div class="d-flex icons-head">
-                        <div class="icons">
-                            <i class="fab fa-facebook-f fb"></i>
-                            <i class="fab fa-twitter tw"></i>
-                            <i class="fab fa-google-plus-g gg"></i>
-                            <i class="fab fa-linkedin-in link"></i>
-                        </div>
-                        <a class="ml-5" href="">Apply Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+ 
 
         @await Component.InvokeAsync("BaseHeader")
 
@@ -45,47 +27,27 @@
                 <div class="navpart">
                     <ul class="nav-bars">
                         <li class="dropdown">
-                            <a class="first-a">HOME</a>
-                            <ul class="dropdown-ul">
-                                <li><a class="first-a" asp-controller="Home" asp-action="Index">Home One</a></li>
-                                <li><a href=" ">Home Two</a></li>
-                                <li><a href=" ">Home Three</a></li>
-                                <li><a href=" ">Home Four</a></li>
-                                <li><a href=" ">Home five</a></li>
-                                <li><a href=" ">Home Instructor</a></li>
-                            </ul>
+                            <a class="first-a" asp-controller="Home" asp-action="Index">HOME</a>
+                           
 
                         </li>
                         <li class="dropdown">
-                            <a>ABOUT US</a>
-                            <ul class="dropdown-ul">
-                                <li><a asp-controller="About" asp-action="Index">About One</a></li>
-                                <li><a href=" ">About Two</a></li>
-                                <li><a href=" ">About Three</a></li>
-                            </ul>
-
+                            <a asp-controller="About" asp-action="Index">ABOUT US</a>
+                           
                         </li>
                         <li class="dropdown-mega">
                             <a>MEGA</a>
                             <div class="mega-menu">
                                 <div class="inner-mega-menu">
-                                    <p>About One</p>
-                                    <p>About Two</p>
+                                    <p>About</p>                                  
                                     <p>Blog</p>
-                                    <p>Blog Details</p>
+                                    
                                 </div>
                                 <div class="inner-mega-menu">
-                                    <p>Teacher</p>
-                                    <p>Teachers Without Filter</p>
-                                    <p>Teachers Single</p>
+                                    <p>Teacher</p>                                  
                                     <p>Contact</p>
                                 </div>
-                                <div class="inner-mega-menu">
-                                    <p>Gallery One</p>
-                                    <p>Gallery Two</p>
-                                    <p>Gallery Three</p>
-                                    <p>Error 404</p>
-                                </div>
+                     
                                 <div class="inner-mega-menu">
                                     <p>Shop</p>
                                     <p>Shop Details</p>
@@ -95,24 +57,10 @@
                             </div>
                         </li>
                         <li class="dropdown">
-                            <a>COURSES</a>
-                            <ul class="dropdown-ul">
-                                <li><a asp-controller="Course" asp-action="Index">Courses One</a></li>
-                                <li><a href=" ">Courses Two</a></li>
-                                <li><a href=" ">Courses Details</a></li>
-                                <li><a href=" ">Courses Details 2</a></li>
-                            </ul>
+                            <a asp-controller="Course" asp-action="Index">COURSES</a>
+                        
                         </li>
-                        <li class="dropdown">
-                            <a>EVENTS</a>
-                            <ul class="dropdown-ul">
-                                <li><a href=" ">Events</a></li>
-                                <li><a href=" ">Events details</a></li>
-                                <li><a href=" ">Details</a></li>
-
-
-                            </ul>
-                        </li>
+                       
                         <li class="dropdown">
                             <a>PAGES</a>
                             <ul class="dropdown-ul">
@@ -120,37 +68,21 @@
                                     <a href=" ">Teachers</a>
                                     <ul class="dropdown-ul-change">
                                         <li><a asp-controller="Teacher" asp-action="Index">Teachers</a></li>
-                                        <li><a href=" ">Teachers Without Filter</a></li>
-                                        <li><a href=" ">Teachers Single</a></li>
+
                                     </ul>
                                 </li>
+                              
                                 <li class="dropdown-change">
-                                    <a href=" ">Gallery</a>
-                                    <ul class="dropdown-ul-change">
-                                        <li><a href=" ">Gallery One</a></li>
-                                        <li><a href=" ">Galler Two</a></li>
-                                        <li><a href=" ">Gallery Three</a></li>
-                                    </ul>
+                                    <a asp-controller="Product" asp-action="Index">Shop</a>
+                               
                                 </li>
-                                <li class="dropdown-change">
-                                    <a href=" ">Shop</a>
-                                    <ul class="dropdown-ul-change">
-                                        <li><a asp-controller="Product" asp-action="Index">Shop</a></li>
-                                        <li><a href=" ">Shop Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href=" ">Cart</a></li>
+                                <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
                                 <li><a href=" ">Checkout</a></li>
-                                <li><a href=" ">Error 404</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a>BLOG</a>
-                            <ul class="dropdown-ul">
-                                <li><a href=" ">Blog</a></li>
-                                <li><a href=" ">Blog Details</a></li>
 
-                            </ul>
                         </li>
                         <li class="xs-padding"><a href="index.html">CONTACT</a></li>
                     </ul>

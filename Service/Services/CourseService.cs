@@ -17,6 +17,17 @@ namespace Service.Services
         {
             _courseRepository = courseRepository;
         }
+
+        public async Task CreateAsync(Course course)
+        {
+          await _courseRepository.CreateAsync(course);
+        }
+
+        public async Task DeleteAsync(Course course)
+        {
+            await _courseRepository.DeleteAsync(course);
+        }
+
         public async Task<IEnumerable<Course>> GetAllAsync()
         {
            return await _courseRepository.GetAllAsync();
@@ -37,6 +48,15 @@ namespace Service.Services
           var course= _courseRepository.FindBy(m=>m.Id == id,m=>m.CourseCategory,m=>m.Teachers).FirstOrDefault();
             return course;
         }
-     
+
+        public async Task<IEnumerable<Course>> GetCoursesByTeacherUsernameAsync(string fullname)
+        {
+          return await _courseRepository.GetCoursesByTeacherUsernameAsync(fullname);
+        }
+
+        public async Task UpdateAsync(Course course)
+        {
+            await _courseRepository.UpdateAsync(course);
+        }
     }
 }

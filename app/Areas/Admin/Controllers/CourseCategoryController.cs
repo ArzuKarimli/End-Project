@@ -116,6 +116,7 @@ namespace app.Areas.Admin.Controllers
                 ModelState.AddModelError("Name", "This category already exist");
                 return View();
             }
+            existCategory.Name = category.Name;
             await _courseCategoryService.EditAsync(existCategory);
             if (existCategory is null) return NotFound();
             return RedirectToAction(nameof(Index));

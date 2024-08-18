@@ -13,6 +13,11 @@ namespace Service.Services.Interfaces
         Task<IEnumerable<Course>> GetAllWithCategoriesAsync();
         Task<Course> GetByIdAsync(int id);
         Task<Course> GetByIdWithCategory(int id);
-      
+        Task DeleteAsync(Course course);
+        Task UpdateAsync(Course course);
+        Task CreateAsync(Course course);
+        Task<IEnumerable<Course>> GetCoursesByTeacherUsernameAsync(string fullname);
+
+
     }
 }

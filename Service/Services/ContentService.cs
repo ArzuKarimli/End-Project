@@ -17,9 +17,29 @@ namespace Service.Services
             _contentRepository = contentRepository;
         }
 
+        public async Task CreateAsync(Content content)
+        {
+            await _contentRepository.CreateAsync(content);
+        }
+
+        public async Task DeleteAsync(Content content)
+        {
+           await  _contentRepository.DeleteAsync(content);
+        }
+
         public async Task<IEnumerable<Content>> GetAllAsync()
         {
            return await _contentRepository.GetAllAsync();
+        }
+
+        public async Task<Content> GetByIdAsync(int id)
+        {
+            return await _contentRepository.GetByIdAsync(id);
+        }
+
+        public async Task UpdateAsync(Content content)
+        {
+            await _contentRepository.UpdateAsync(content);
         }
     }
 }

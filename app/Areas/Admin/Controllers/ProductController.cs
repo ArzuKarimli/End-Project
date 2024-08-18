@@ -219,6 +219,9 @@ namespace app.Areas.Admin.Controllers
                     Name = filaName,
                 });
             }
+            product.Material=editProduct.Material;
+            product.Description=editProduct.Description;
+            product.CategoryId=editProduct.CategoryId;
 
             product.ProductImages = images;
             await _productService.UpdateAsync(product);

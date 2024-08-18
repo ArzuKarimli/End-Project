@@ -15,6 +15,11 @@ namespace Repository.Repositories
     {
         public TeacherRepository(AppDbContext dbContext):base(dbContext) { }
 
+        public async Task<Teacher> FindByFullNameAsync(string fullName)
+        {
+            return await _entities.FirstOrDefaultAsync(t => t.FullName == fullName);
+        }
+
         public async Task<IEnumerable<Teacher>> GetAllTeacherWithCoursesAsync()
         {
             return await _entities.Include(t => t.Courses)

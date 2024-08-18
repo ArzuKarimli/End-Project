@@ -16,11 +16,23 @@ namespace Repository.Repositories
     {
         public CourseRepository(AppDbContext dbContext): base(dbContext) { }
 
+        
+
         public async Task<IEnumerable<Course>> GetAllWithCategories()
         {
-            return await _entities.IncludeMultiple<Course>(m => m.CourseCategory).ToListAsync();
+            return await _entities.Include(c => c.CourseCategory)
+                         .Include(c => c.Teachers)
+                         .ToListAsync();
         }
 
-       
+        public async Task<IEnumerable<Course>> GetCoursesByTeacherUsernameAsync(string fullname)
+        {
+            return await _entities
+                .Where(c => c.Teachers.Any(t => t.FullName==fullname))
+                .Include(c => c.CourseCategory)
+                .Include(c => c.Teachers)
+                .ToListAsync();
+        }
+
     }
 }

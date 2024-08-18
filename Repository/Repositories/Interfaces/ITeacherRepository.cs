@@ -10,5 +10,6 @@ namespace Repository.Repositories.Interfaces
     public interface ITeacherRepository : IBaseRepository<Teacher>
     {
         Task<IEnumerable<Teacher>> GetAllTeacherWithCoursesAsync();
+         Task<Teacher> FindByFullNameAsync(string fullName);
     }
 }

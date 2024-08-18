@@ -10,7 +10,7 @@ namespace Repository.Repositories.Interfaces
     public interface ICourseRepository:IBaseRepository<Course>
     {
         Task<IEnumerable<Course>> GetAllWithCategories();
-       
-        
+        Task<IEnumerable<Course>> GetCoursesByTeacherUsernameAsync(string fullname);
+
     }
 }

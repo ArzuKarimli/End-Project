@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddserviceLayer();
+builder.Services.AddMappingService();
 builder.Services.AddRepositoryLayer();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -52,7 +53,6 @@ app.MapControllerRoute(
            name: "areas",
            pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
          );
-
 
 app.MapControllerRoute(
     name: "default",

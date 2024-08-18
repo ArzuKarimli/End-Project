@@ -660,6 +660,7 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\_ProductListPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\assets\css\teacher.css" />
     <_ContentIncludedByDefault Remove="wwwroot\assets\js\modal.js" />
   </ItemGroup>
 

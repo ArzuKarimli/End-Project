@@ -22,14 +22,16 @@ namespace app.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _LoginManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ITeacherService _teacherService;
 
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> LoginManager, RoleManager<IdentityRole> roleManager, IAccountService accountService)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> LoginManager, RoleManager<IdentityRole> roleManager, IAccountService accountService, ITeacherService teacherService)
         {
             _userManager = userManager;
             _LoginManager = LoginManager;
             _roleManager = roleManager;
             _accountService = accountService;
+            _teacherService = teacherService;
         }
 
         [HttpGet]
@@ -123,6 +125,118 @@ namespace app.Controllers
             await _accountService.Logout();
             return RedirectToAction("Index", "Home");
         }
+        [HttpGet]
+        public IActionResult RegisterTeacher()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterTeacher(RegisterTeacherVM request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            AppUser user = new()
+            {
+                UserName = request.Username,
+                Email = request.Email,
+                FullName = request.FullName,
+                Specialization = request.Specialization,
+            };
+
+            var result = await _userManager.CreateAsync(user, request.Password);
+
+            if (result.Succeeded)
+            {
+                if (!await _roleManager.RoleExistsAsync(nameof(Roles.Teacher)))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(nameof(Roles.Teacher)));
+                }
+
+               
+                string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                string action = Url.Action(nameof(ApproveTeacher), "Account", new { username = request.Username, email = request.Email, fullName = request.FullName, specialization = request.Specialization }, Request.Scheme);
+
+                var email = new MimeMessage();
+                email.From.Add(MailboxAddress.Parse("arzusk@code.edu.az"));
+                email.To.Add(MailboxAddress.Parse("arzusk@code.edu.az")); 
+                email.Subject = "Teacher Registration";
+                email.Body = new TextPart(TextFormat.Html)
+                {
+                    Text = $@"
+                <h3>Application to join the course as a Teacher</h3>
+                <p><strong>Username:</strong> {request.Username}</p>
+                <p><strong>Email:</strong> {request.Email}</p>
+                <p><strong>Full Name:</strong> {request.FullName}</p>
+                <p><strong>Specialization:</strong> {request.Specialization}</p>
+                <p><a href='{action}'>Click here to approve this teacher</a></p>"
+                };
+
+                using (var smtp = new MailKit.Net.Smtp.SmtpClient())
+                {
+                    smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                    smtp.Authenticate("arzusk@code.edu.az", "zxfg txje viix nnmf");
+                    await smtp.SendAsync(email);
+                    smtp.Disconnect(true);
+                }
+
+                return RedirectToAction(nameof(VerifyEmail));
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(request);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ApproveTeacher(string username, string email, string fullName, string specialization)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return Content("Teacher not found.");
+            }
+
+            if (!await _roleManager.RoleExistsAsync(nameof(Roles.Teacher)))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(nameof(Roles.Teacher)));
+            }
+
+            await _userManager.AddToRoleAsync(user, nameof(Roles.Teacher));
+
+         
+            string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            string action = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, token }, Request.Scheme);
+
+            var confirmationEmail = new MimeMessage();
+            confirmationEmail.From.Add(MailboxAddress.Parse("arzusk@code.edu.az"));
+            confirmationEmail.To.Add(MailboxAddress.Parse(email));
+            confirmationEmail.Subject = "Your Registration has been Approved";
+            confirmationEmail.Body = new TextPart(TextFormat.Html)
+            {
+                Text = $@"
+            <h3>Your registration as a Teacher has been approved!</h3>
+            <p><a href='{action}'>Click here</a> to confirm your email and complete your registration.</p>"
+            };
+
+            using (var smtp = new MailKit.Net.Smtp.SmtpClient())
+            {
+                smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                smtp.Authenticate("arzusk@code.edu.az", "zxfg txje viix nnmf");
+                await smtp.SendAsync(confirmationEmail);
+                smtp.Disconnect(true);
+            }
+
+            return RedirectToAction("Index","Home"); 
+        }
+
 
 
     }

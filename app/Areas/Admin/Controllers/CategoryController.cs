@@ -13,12 +13,10 @@ namespace app.Areas.Admin.Controllers
         private readonly ICategoryService _categoryService;
         public CategoryController(ICategoryService categoryService)
         {
-
             _categoryService = categoryService;
         }
+
         [HttpGet]
-
-
         public async Task<IActionResult> Index()
         {
             var categories = await _categoryService.GetAllOrderByDescendingAsync();
@@ -71,7 +69,6 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> Delete(int? id)
         {
             if (id is null) return BadRequest();
@@ -108,13 +105,7 @@ namespace app.Areas.Admin.Controllers
             if (id is null) return BadRequest();
 
             ProductCategory existCategory = await _categoryService.GetByIdAsync((int)id);
-            bool existCategoryName = await _categoryService.ExistAsync(existCategory.Name);
-
-            if (existCategoryName)
-            {
-                ModelState.AddModelError("Name", "This category already exist");
-                return View();
-            }
+           existCategory.Name = category.Name;
             await _categoryService.EditAsync(existCategory);
             if (existCategory is null) return NotFound();
             return RedirectToAction(nameof(Index));
