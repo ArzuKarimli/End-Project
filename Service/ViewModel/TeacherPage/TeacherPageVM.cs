@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,5 +27,6 @@ namespace Service.ViewModel.TeacherPage
         public DateTime EndTime { get; set; }
         public string CourseCategory { get; set; }
         public List<string> TeacherNames { get; set; }
+        public IFormFile ProfileImage {  get; set; }   
     }
 }

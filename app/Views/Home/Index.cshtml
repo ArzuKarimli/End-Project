@@ -125,8 +125,8 @@
                                     <div class="over-div"><i class="fas fa-link"></i></div>
                                 </div>
                                 <div class="item-body">
-                                    <a class="science-a" href="">@item.CourseCategory.Name</a>
-                                    <h4><a href=" ">@item.Name</a></h4>
+                                    <a class="science-a">@item.CourseCategory.Name</a>
+                                    <h4><a asp-controller="Course" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a></h4>
                                     <div class="review-wrap">
                                         <ul>
                                             <li><i class="fas fa-star"></i></li>
@@ -448,7 +448,7 @@
     </section>
     <section id="what-people">
         <div class="section-name">
-            <h2>OUR POPULAR COURSES</h2>
+            <h2>WHAT PEOPLE SAYS</h2>
             <p>Fusce sem dolor, interdum in fficitur at, faucibus nec lorem. Sed nec molestie justo.</p>
             <div class="linediv"></div>
         </div>

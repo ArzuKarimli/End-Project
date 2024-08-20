@@ -1,0 +1,49 @@
+﻿@model CourseDetailVM
+@{
+    ViewData["Title"] = "Detail";
+}
+<section class="py-5">
+    <div class="container">
+        <div class="row gx-5">
+            <aside class="col-lg-6">
+                <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                    <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image">
+                        <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="~/assets/images/@Model.Image" />
+                    </a>
+                </div>
+     
+
+            </aside>
+            <main class="col-lg-6">
+                <div class="ps-lg-3">
+                    <h4 class="title text-white">
+                        @Model.Name
+                    </h4>
+                    <h5>Description:</h5>
+                    <p>
+                        @Model.Description
+                    </p>
+                    <h5>Full Description:</h5>
+                    <p>
+                        @Html.Raw(@Model.FullDescription)
+                    </p>
+
+                    
+                    <h6>Price:</h6>
+                    <span class="h5">$@Model.Price</span>
+                    <h6>Class:</h6>
+                    <span class="h5">$@Model.Class</span>
+                    <h6>Level:</h6>
+                    <span class="text-muted">@Model.Level</span>
+                    <h6>Seat:</h6>
+                    <span class="h5">$@Model.Seat</span>
+                
+                    <hr />
+
+
+                </div>
+                <a class="btn btn-success" asp-action="Index">Back</a>
+            </main>
+        </div>
+    </div>
+</section>

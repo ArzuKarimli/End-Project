@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Service.ViewModel.TeacherPage
         public int Seat { get; set; }
         public string Level { get; set; }
         public int Lesson { get; set; }
-        public string Image { get; set; }
+        public IFormFile Image { get; set; } 
         public int Rating { get; set; }
         public int Class { get; set; }
         public int StudentCount { get; set; }

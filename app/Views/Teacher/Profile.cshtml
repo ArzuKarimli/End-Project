@@ -2,40 +2,69 @@
 @{
     Layout = null;
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link href="~/assets/css/teacher.css" rel="stylesheet" />
-<div class="profile-container">
-    <a class="btn btn-success" asp-area="" asp-controller="Teacher" asp-action="CreateCourse"><i class="fa-solid fa-circle-plus"></i></a>
-    <div class="profile-header">
-        <h1>@ViewData["Title"]</h1>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="profile-content">
-        <h2>Your Courses</h2>
-        <table class="profile-table">
-            <thead>
-                <tr>
-                    <th>Course Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var course in Model)
-                {
-                    <tr>
-                        <td>@course.Name</td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@course.Id" class="profile-button edit-btn">Edit</a>
-                            <a asp-action ="Create" asp-route-id="@course.Id" class="profile-button create-btn">
-                                Create</a>
-                            <a href="@Url.Action("DeleteCourse", new { id = course.Id })" class="profile-button delete-btn">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link href="~/admin/assets/css/teacher.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="profile-header">
+
+        <div class="profile-actions">
+            <a class="add-course-button" asp-area="" asp-controller="Teacher" asp-action="CreateCourse">
+                <i class="fa-solid fa-circle-plus"></i> Create Course
+            </a>
+            <div class="profile-picture-container">
+                <img src="~/assets/images/Default_pfp.jpg" alt="Profile Picture" class="profile-picture" />
+                <form asp-action="UpdateProfilePicture" method="post" enctype="multipart/form-data" class="upload-form">
+                    <input type="file" name="profilePicture" accept="image/*" />
+                    <button type="submit" class="upload-button">Upload Picture</button>
+                </form>
+            </div>
+        </div>
+        <h2>@User.Identity.Name</h2>
     </div>
+    
+        <div class="profile-content">
+            <h2>Your Courses</h2>
+            <table class="course-table">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var course in Model)
+                    {
+                        <tr>
+                            <td>@course.Name</td>
+                            <td>
+                                <a asp-action="EditCourse" asp-route-id="@course.Id" class="action-button edit-button">Edit</a>
+                              `a21` q2w3e4567890-*
+                                <a href="@Url.Action("DeleteCourse", new { id = course.Id })" class="action-button delete-button">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    
 </div>
+
+</html>
+
 
 

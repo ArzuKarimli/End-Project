@@ -12,8 +12,8 @@ using Repository.Data;
 namespace Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240817202304_ConfigureOneToOneRelation")]
-    partial class ConfigureOneToOneRelation
+    [Migration("20240819084956_CreateSpecializationRow")]
+    partial class CreateSpecializationRow
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -114,11 +114,7 @@ namespace Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Specialization")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TeacherId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -137,9 +133,32 @@ namespace Repository.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("TeacherId");
-
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Domain.Entities.Content", b =>
@@ -416,10 +435,6 @@ namespace Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -432,8 +447,6 @@ namespace Repository.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
 
                     b.ToTable("Teachers");
                 });
@@ -586,15 +599,6 @@ namespace Repository.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Entities.AppUser", b =>
-                {
-                    b.HasOne("Domain.Entities.Teacher", "Teacher")
-                        .WithMany()
-                        .HasForeignKey("TeacherId");
-
-                    b.Navigation("Teacher");
-                });
-
             modelBuilder.Entity("Domain.Entities.Course", b =>
                 {
                     b.HasOne("Domain.Entities.CourseCategory", "CourseCategory")
@@ -637,17 +641,6 @@ namespace Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Slider");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Teacher", b =>
-                {
-                    b.HasOne("Domain.Entities.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -22,14 +22,14 @@
                         <h5 class="card-title">@item.Name</h5>
                         <p class="card-text"><b>Description:</b>@item.Description</p>
                         <p class="card-text"><b>Price:</b> @item.Price</p>
-                        <p class="card-text"><b>Category:</b> @item.CourseCategory/p>
-                        <p class="card-text"><b>Weight:</b> @item.Duration/p>
+                        <p class="card-text"><b>Category:</b> @item.CourseCategory</p>
+                        <p class="card-text"><b>Duration:</b> @item.Duration</p>
 
-                        <p class="card-text"><b>Sales Count:</b> @item.Level</p>
+                        <p class="card-text"><b>SLevel:</b> @item.Level</p>
                         <p class="card-text"><b>Material:</b> @item.Lesson</p>
-                   
-                        <p class="card-text"><b>Rating:</b>@item.Seat</p>
-                        <p class="card-text"><b>Rating:</b>@item.StudentCount</p>
+                    
+                        <p class="card-text"><b>Seat:</b>@item.Seat</p>
+                        <p class="card-text"><b>Student Count:</b>@item.StudentCount</p>
                         <p class="card-text"><b>Teachers:</b></p>
                         @if (item.TeacherNames != null && item.TeacherNames.Any())
                             {

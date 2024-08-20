@@ -2,29 +2,34 @@
 @{
     Layout = null;
 }
+
 <link href="~/assets/css/teacher.css" rel="stylesheet" />
-<form asp-action="CreateCourse" method="post">
-    <input type="text" name="CourseName" placeholder="Course Name" required />
-    <textarea name="Description" placeholder="Description" required></textarea>
-    <textarea name="FullDescription" placeholder="Full Description" required></textarea>
-    <input type="number" name="Price" placeholder="Price" required />
-    <input type="number" name="Seat" placeholder="Seat" required />
-    <input type="text" name="Duration" placeholder="Duration" required />
-    <input type="text" name="Level" placeholder="Level" required />
-    <input type="number" name="Lesson" placeholder="Lesson" required />
-    <input type="file" name="Image" required />
-    <input type="number" name="Rating" placeholder="Rating" required />
-    <input type="number" name="Class" placeholder="Class" required />
-    <input type="number" name="Student" placeholder="Student" required />
-    <input type="datetime-local" name="StartTime" required />
-    <input type="datetime-local" name="EndTime" required />
-    <select name="CourseCategoryId">
-        @foreach (var category in Model.CourseCategories)
-        {
-            <option value="@category.Id">@category.Name</option>
-        }
-    </select>
-    <button type="submit">Create Course</button>
-</form>
+<h2>Create your own course</h2>
+<div class="body">
+    <form asp-action="CreateCourse" method="post" enctype="multipart/form-data">
+        <input type="text" name="Name" placeholder="Course Name" required />
+        <textarea name="Description" placeholder="Description" required></textarea>
+        <textarea name="FullDescription" placeholder="Full Description" required></textarea>
+        <input type="number" name="Price" placeholder="Price" required />
+        <input type="number" name="Seat" placeholder="Seat" required />
+        <input type="text" name="Duration" placeholder="Duration" required />
+        <input type="text" name="Level" placeholder="Level" required />
+        <input type="number" name="Lesson" placeholder="Lesson" required />
+        <input type="file" name="Image" required />
+        <input type="number" name="Rating" placeholder="Rating" required />
+        <input type="number" name="Class" placeholder="Class" required />
+        <input type="number" name="Student" placeholder="Student" required />
+        <input type="datetime-local" name="StartTime" required />
+        <input type="datetime-local" name="EndTime" required />
+        <select name="CourseCategoryId">
+            @foreach (var category in Model.CourseCategories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+        <button type="submit">Create Course</button>
+      <a asp-controller="Teacher" asp-action="Profile" class="back">Back</a>
+    </form>
+</div>
 
 

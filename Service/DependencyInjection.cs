@@ -28,6 +28,7 @@ namespace Service
             services.AddScoped<ICartService,CartService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IContactService, ContactService>();
             return services;
         }
 

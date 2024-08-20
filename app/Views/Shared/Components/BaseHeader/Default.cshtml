@@ -29,15 +29,17 @@
                 <div class="d-flex align-items-center">
                     @if (User.Identity.IsAuthenticated && User.IsInRole("SuperAdmin"))
                     {
-                      
-                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="mx-3">
-                                <i class="fas fa-cogs"></i> Admin Dashboard
-                            </a>
-                            <p class="domain">@User.Identity.Name</p>
-                        <form   asp-controller="Account" asp-action="Logout">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                        <button class="px-1 btn btn-danger btn-logout" type="submit">Log Out</button>
-                        </form>
+                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="mx-3">
+                            <i class="fas fa-user-cog mail"></i>
+                        </a>
+                        <div>
+
+                            <h5 class="domain"><strong>@User.Identity.Name</strong></h5>
+                            <form asp-controller="Account" asp-action="Logout">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <button class="px-1 btn btn-danger btn-logout mt-2" type="submit">Log Out</button>
+                            </form>
+                        </div>
 
                     }
                     else if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
@@ -46,17 +48,17 @@
                             <i class="fas fa-envelope-open-text mail"></i>
                         </a>
                         <div>
-                            <span class="elemspan">Mail Us</span>
-                            <p class="domain">@User.Identity.Name</p>
+
+                            <h5 class="domain">X<strong>@User.Identity.Name</strong></h5>
                             <form asp-controller="Account" asp-action="Logout">
                                 <i class="fa-solid fa-right-from-bracket"></i>
-                                <button class="px-1 btn btn-danger btn-logout" type="submit">Log Out</button>
+                                <button class="px-1 btn btn-danger btn-logout mt-2" type="submit">Log Out</button>
                             </form>
                         </div>                      
                     }
                     else if(!User.Identity.IsAuthenticated)
                     {
-                        <a asp-controller="Account" asp-action="SignUp" class="mx-3">
+                        <a asp-controller="Account" asp-action="SignIn" class="mx-3">
                             <i class="fas fa-envelope-open-text mail"></i>
                         </a>
                         <div>
@@ -67,9 +69,9 @@
                     else if (User.Identity.IsAuthenticated && User.IsInRole("Teacher"))
                     {
                         <a  asp-controller="Teacher" asp-action="Profile" class="mx-3">
-                            <i class="fa-regular fa-id-card"></i> My Profile
+                            <i class="fas fa-user-circle"></i> My Profile
                         </a>
-                        <p class="domain">@User.Identity.Name</p>
+                        <h5 class="domain"><strong>@User.Identity.Name</strong></h5>
                         <form asp-controller="Account" asp-action="Logout">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <button class="px-1 btn btn-danger btn-logout" type="submit">Log Out</button>

@@ -8,7 +8,7 @@
         public string Duration { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public string FullDescription { get; set; }
+       
         public int Seat { get; set; }
         public string Level { get; set; }
         public int Lesson { get; set; }
