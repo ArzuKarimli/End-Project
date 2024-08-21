@@ -25,6 +25,11 @@ namespace Repository.Repositories
                          .ToListAsync();
         }
 
+        public async Task<Course> GetByIdCourseWithCategoryAsync(int id)
+        {
+            return await _entities.Where(m => m.Id == id).Include(c => c.CourseCategory).Include(c => c.Teachers).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<Course>> GetCoursesByTeacherUsernameAsync(string fullname)
         {
             return await _entities

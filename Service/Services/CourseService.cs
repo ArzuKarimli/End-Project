@@ -43,6 +43,13 @@ namespace Service.Services
             return await _courseRepository.GetByIdAsync(id);
         }
 
+      
+
+        public async Task<Course> GetByIdCourseWithCategoryAsync(int id)
+        {
+            return await _courseRepository.GetByIdCourseWithCategoryAsync(id);
+        }
+
         public async Task<Course> GetByIdWithCategory(int id)
         {
           var course= _courseRepository.FindBy(m=>m.Id == id,m=>m.CourseCategory,m=>m.Teachers).FirstOrDefault();

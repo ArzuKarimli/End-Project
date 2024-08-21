@@ -1738,10 +1738,10 @@ form.example button {
 }
 
 #what-people {
-  background-image: url("http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/bg/testimonial-bg.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  padding: 100px 0;
+    background-image: url("https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/bg/testimonial-bg.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 100px 0;
 }
 #what-people .section-name {
   text-align: center;
@@ -1848,9 +1848,9 @@ form.example button {
 }
 
 footer {
-  background-image: url("http://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/bg/counter-bg.jpg");
-  background-attachment: fixed;
-  background-size: cover;
+    background-image: url("	https://keenitsolutions.com/products/html/edulearn/edulearn-demo/images/bg/counter-bg.jpg");
+    background-attachment: fixed;
+    background-size: cover;
 }
 footer .relative-div {
   position: relative;
@@ -2238,6 +2238,8 @@ footer #footer-end p a:hover {
   #product .owl-dots {
     display: none;
   }
+ 
+
   footer .relative-div .footer-contact {
     position: static;
   }

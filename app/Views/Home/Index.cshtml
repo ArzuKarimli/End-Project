@@ -415,9 +415,16 @@
         </div>
     </section>
     <section id="product">
+         @await Html.PartialAsync("_PresentationModalView", new ProductVM
+   {
+       Products = Model.Products
+        .Where(m => m.Category.Id == Model.ProductCategories.FirstOrDefault()?.Id)
+        .ToList(),
+       ProductCategories = Model.ProductCategories
+   }) 
         <div class="container">
             <div class="section-name">
-                <h2> Our Products</h2>
+                <h2>OUR POPULAR COURSES</h2>
                 <p>Fusce sem dolor, interdum in fficitur at, faucibus nec lorem. Sed nec molestie justo.</p>
                 <div class="linediv"></div>
             </div>
@@ -425,24 +432,25 @@
 
             <div class="owl-carousel owl-theme third-slider">
 
-             @foreach (var item in Model.Products.Take(3))
+              @foreach (var item in Model.Products.Take(4))
                 {
                     <div class="general">
                         <div class="item-header">
-                            <img src="~/assets/images/@item.ProductImages.FirstOrDefault().Name">
+                            <img src="~/assets/images/@item.ProductImages.FirstOrDefault(m=>m.IsMain).Name">
                         </div>
                         <h4><a href=" ">@item.Name</a></h4>
                         <span>From:$@item.Price</span>
-                     
+                        <div class="cart-div"><a data-id="@item.Id"  class="add-to-cart-btn">Add To Cart</a></div>
 
                     </div>
+
                 }
 
-
+             
 
             </div>
             <div class="view">
-                <a asp-controller="Product" asp-action="Index">View All</a>
+                <a href="">View All</a>
             </div>
         </div>
     </section>

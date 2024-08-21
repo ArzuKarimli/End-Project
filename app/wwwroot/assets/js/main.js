@@ -174,7 +174,7 @@
     });
 
 
-   
+
  
 
     // Price range display

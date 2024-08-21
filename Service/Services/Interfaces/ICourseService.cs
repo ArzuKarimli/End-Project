@@ -17,7 +17,7 @@ namespace Service.Services.Interfaces
         Task UpdateAsync(Course course);
         Task CreateAsync(Course course);
         Task<IEnumerable<Course>> GetCoursesByTeacherUsernameAsync(string fullname);
-
+        Task<Course> GetByIdCourseWithCategoryAsync(int id);
 
     }
 }

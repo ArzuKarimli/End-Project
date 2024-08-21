@@ -112,7 +112,7 @@ namespace app.Controllers
 
             await _courseService.CreateAsync(newCourse);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Profile));
         }
 
         [HttpPost]
@@ -148,13 +148,13 @@ namespace app.Controllers
         [HttpGet]
         public async Task<IActionResult> EditCourse(int? id)
         {
-            var course = await _courseService.GetByIdAsync((int)id);
+            var course = await _courseService.GetByIdCourseWithCategoryAsync((int)id);
             if (course == null)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var categories = await _courseCategoryService.GetAllAsync();
+            ViewBag.Categories = await _courseCategoryService.GetAllAsync();
 
           
 
@@ -167,13 +167,13 @@ namespace app.Controllers
         {
             
 
-            var course = await _courseService.GetByIdAsync(model.Id);
+            var course = await _courseService.GetByIdCourseWithCategoryAsync(model.Id);
             if (course == null)
             {
                 return RedirectToAction("Index", "Home");
             }
+            ViewBag.Categories = await _courseCategoryService.GetAllAsync();
 
-           
             if (model.NewImage != null)
             {
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.NewImage.FileName);
@@ -206,8 +206,16 @@ namespace app.Controllers
 
             await _courseService.UpdateAsync(course);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Profile));
         }
-
+        [HttpPost]
+        public async Task<IActionResult> DeleteCourse(int? id)
+        {
+           if (id == null) return BadRequest();
+            Course course = await _courseService.GetByIdCourseWithCategoryAsync((int)(id));
+            if (course == null) return NotFound();  
+            await _courseService.DeleteAsync(course);
+            return RedirectToAction(nameof(Profile));
+        }
     }
 }

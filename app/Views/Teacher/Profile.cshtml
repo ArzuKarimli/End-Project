@@ -19,24 +19,25 @@
 
     <link href="~/admin/assets/css/teacher.css" rel="stylesheet" />
 
-<div class="container">
-    <div class="profile-header">
+<div class="profile ">
+    <div class="container">
+        <div class="profile-header">
 
-        <div class="profile-actions">
-            <a class="add-course-button" asp-area="" asp-controller="Teacher" asp-action="CreateCourse">
-                <i class="fa-solid fa-circle-plus"></i> Create Course
-            </a>
-            <div class="profile-picture-container">
-                <img src="~/assets/images/Default_pfp.jpg" alt="Profile Picture" class="profile-picture" />
-                <form asp-action="UpdateProfilePicture" method="post" enctype="multipart/form-data" class="upload-form">
-                    <input type="file" name="profilePicture" accept="image/*" />
-                    <button type="submit" class="upload-button">Upload Picture</button>
-                </form>
+            <div class="profile-actions">
+                <a class="add-course-button" asp-area="" asp-controller="Teacher" asp-action="CreateCourse">
+                    <i class="fa-solid fa-circle-plus"></i> Create Course
+                </a>
+                <div class="profile-picture-container">
+                    <img src="~/assets/images/Default_pfp.jpg" alt="Profile Picture" class="profile-picture" />
+                    <form asp-action="UpdateProfilePicture" method="post" enctype="multipart/form-data" class="upload-form">
+                        <input type="file" name="profilePicture" accept="image/*" />
+                        <button type="submit" class="upload-button">Upload Picture</button>
+                    </form>
+                </div>
             </div>
+            <h2>@User.Identity.Name</h2>
         </div>
-        <h2>@User.Identity.Name</h2>
-    </div>
-    
+
         <div class="profile-content">
             <h2>Your Courses</h2>
             <table class="course-table">
@@ -52,16 +53,18 @@
                         <tr>
                             <td>@course.Name</td>
                             <td>
-                                <a asp-action="EditCourse" asp-route-id="@course.Id" class="action-button edit-button">Edit</a>
-                              `a21` q2w3e4567890-*
-                                <a href="@Url.Action("DeleteCourse", new { id = course.Id })" class="action-button delete-button">Delete</a>
+                                <div class="btns d-flex">
+                                    <a asp-action="EditCourse" asp-route-id="@course.Id" class="action-button edit-button">Edit</a>
+                                    <form method="post" asp-controller="Teacher" asp-action="DeleteCourse" asp-route-id="@course.Id"><button class="action-button delete-button border-0">Delete</button></form>
+                                </div>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-    
+
+    </div>
 </div>
 
 </html>

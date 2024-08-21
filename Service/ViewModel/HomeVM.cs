@@ -14,5 +14,7 @@ namespace Service.ViewModel
         public List<Course> Courses { get; set; }
         public List<Teacher> Teachers { get; set; }
         public List<Product> Products { get; set; }
+        public Product Product { get; set; }
+        public List<ProductCategory> ProductCategories { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Repository.Repositories.Interfaces
     {
         Task<IEnumerable<Course>> GetAllWithCategories();
         Task<IEnumerable<Course>> GetCoursesByTeacherUsernameAsync(string fullname);
+        Task<Course> GetByIdCourseWithCategoryAsync(int id);
 
     }
 }
