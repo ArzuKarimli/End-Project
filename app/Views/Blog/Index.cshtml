@@ -2,79 +2,43 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/blog.css" />
+}
 <main>
     <section id="blog-area">
         <div class="container mt-5">
-            <div class="row blog-hover mt-5">
-                <div class="col-lg-6 col-md-12">
+         @foreach (var item in Model.Blogs)
+            {
+                <div class="row blog-hover mt-5">
+                    <div class="col-lg-6 col-md-12">
 
-                    <div class="image">
-                        <i class="fas fa-link"></i>
-                        <img src="./assets/images/1 (8).jpg" alt="">
+                        <div class="image">
+                            <i class="fas fa-link"></i>
+                            <img src="~/assets/images/@item.Image" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="blog-info">
-                        <div class="blog-date"><i class="fa-regular fa-calendar-check"></i> <span>13 Sep 2017</span></div>
-                    </div>
-                    <div class="blog-title">
-                        <h4>Traditional Elementary Education of Traditional College</h4>
-                    </div>
-                    <div class="blog-admin d-flex">
-                        <div class="admin">  <span><i class="fa-regular fa-user"></i>Admin</span></div>
-                        <div class="user mx-5"> <span> <i class="fa-regular fa-comments"></i>05</span></div>
-                    </div>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
-                    <a class="primary-btn">Read More</a>
-                </div>
-            </div>
-            <div class="row blog-hover mt-5">
-                <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="blog-info">
+                            <div class="blog-date"><i class="fa-regular fa-calendar-check"></i> <span>@item.Date.ToString("dd MMM yyyy")</span></div>
+                        </div>
+                        <div class="blog-title">
+                            <h4>@item.Title</h4>
+                        </div>
+                        <div class="blog-admin d-flex">
+                            <div class="admin">  <span><i class="fa-regular fa-user"></i>Admin</span></div>
+                            <div class="user mx-5"> <span> <i class="fa-regular fa-comments"></i>05</span></div>
+                        </div>
+                        <p>
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                            <span class="more-text">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</span>
+                        </p>
+                        <a class="primary-btn">Read More</a>
 
-                    <div class="image">
-                        <i class="fas fa-link"></i>
-                        <img src="./assets/images/1 (8).jpg" alt="">
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="blog-info">
-                        <div class="blog-date"><i class="fa-regular fa-calendar-check"></i> <span>13 Sep 2017</span></div>
-                    </div>
-                    <div class="blog-title">
-                        <h4>Traditional Elementary Education of Traditional College</h4>
-                    </div>
-                    <div class="blog-admin d-flex">
-                        <div class="admin">  <span><i class="fa-regular fa-user"></i>Admin</span></div>
-                        <div class="user mx-5"> <span> <i class="fa-regular fa-comments"></i>05</span></div>
-                    </div>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
-                    <a class="primary-btn">Read More</a>
-                </div>
-            </div>
-            <div class="row blog-hover mt-5">
-                <div class="col-lg-6 col-md-12">
-
-                    <div class="image">
-                        <i class="fas fa-link"></i>
-                        <img src="./assets/images/1 (8).jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="blog-info">
-                        <div class="blog-date"><i class="fa-regular fa-calendar-check"></i> <span>13 Sep 2017</span></div>
-                    </div>
-                    <div class="blog-title">
-                        <h4>Traditional Elementary Education of Traditional College</h4>
-                    </div>
-                    <div class="blog-admin d-flex">
-                        <div class="admin">  <span><i class="fa-regular fa-user"></i>Admin</span></div>
-                        <div class="user mx-5"> <span> <i class="fa-regular fa-comments"></i>05</span></div>
-                    </div>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
-                    <a class="primary-btn">Read More</a>
-                </div>
-            </div>
+            }
+            
         </div>
     </section>
 </main>
