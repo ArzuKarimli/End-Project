@@ -38,7 +38,12 @@
                     </div>
                     <div class="cart-title">
                         <span>From ₼@item.Price</span>
-                        <a data-id="@item.Id" class="add-to-cart-btn">Add To Cart</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a data-id="@item.Id" class="add-to-cart-btn">Add To Cart</a>
+                        }else{
+                            <a data-id="@item.Id" class="cart-btn" asp-controller="Account" asp-action="SignIn">Add To Cart</a>
+                        }
                     </div>
                 </div>
             </div>

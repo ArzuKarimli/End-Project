@@ -12,6 +12,7 @@ using ProductVM = app.Areas.Admin.ViewModel.Product.ProductVM;
 namespace app.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -25,6 +26,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Index()
         {
             var products = await _productService.GetAllAsyncWithImages();
@@ -51,6 +53,7 @@ namespace app.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Detail(int? id)
         {
             if (id is null) return BadRequest();
@@ -87,7 +90,7 @@ namespace app.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id is null) return BadRequest();
@@ -104,6 +107,7 @@ namespace app.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Categories = await _categoryService.GetAllSelectAsync();
@@ -111,7 +115,7 @@ namespace app.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-     
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Create(ProductCreateVM request)
         {
             ViewBag.Categories = await _categoryService.GetAllSelectAsync();
@@ -165,7 +169,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
-       
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             ViewBag.categories = await _categoryService.GetAllSelectAsync();
@@ -192,7 +196,7 @@ namespace app.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id, ProductEditVM editProduct)
         {
             ViewBag.categories = await _categoryService.GetAllSelectAsync();

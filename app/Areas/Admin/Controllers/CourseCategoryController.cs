@@ -3,6 +3,7 @@
 using app.Areas.Admin.ViewModel.CourseCategory;
 using app.Areas.Admin.ViewModel.ProductCategoryVM;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 using Service.Services.Interfaces;
@@ -10,6 +11,7 @@ using Service.Services.Interfaces;
 namespace app.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class CourseCategoryController : Controller
     {
         private readonly ICourseCategoryService _courseCategoryService;
@@ -19,6 +21,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Index()
         {
             var categories= await _courseCategoryService.GetAllAsync();
@@ -26,13 +29,13 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Create(CategoryCreateVM category)
         {
 
@@ -52,7 +55,7 @@ namespace app.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Detail(int? id)
         {
             if (id is null) return BadRequest();
@@ -71,7 +74,7 @@ namespace app.Areas.Admin.Controllers
 
 
         [HttpPost]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id is null) return BadRequest();
@@ -85,7 +88,7 @@ namespace app.Areas.Admin.Controllers
 
 
         [HttpGet]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id is null) return BadRequest();
@@ -97,7 +100,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpPost]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id, CourseCategoryEditVM category)
         {
 

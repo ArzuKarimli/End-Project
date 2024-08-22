@@ -760,12 +760,26 @@ body {
                 margin-top: 15px;
                 background: none;
                 cursor: pointer;
+                text-decoration: none;
 
                 &:hover {
                     transition: all 0.3s;
                     background: #ff3115;
                     color: #fff !important;
                 }
+            }
+
+            .cart-btn {
+                border: 1px solid #ff3115;
+                padding: 9px 26px;
+                color: #212121;
+                font-size: 15px;
+                font-weight: 600;
+                display: inline-block;
+                margin-top: 15px;
+                background: none;
+                cursor: pointer;
+                text-decoration: none;
             }
         }
 
@@ -779,6 +793,35 @@ body {
             .image .cart-icon {
                 transform: scaleY(1);
                 opacity: 1;
+            }
+        }
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+        a {
+            margin: 0 5px;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #000;
+            border: 1px solid #ccc;
+
+            &.active {
+                background-color: #dc3f2e;
+                color: white;
+            }
+
+            &:hover {
+                background-color: #f1f1f1;
+                color: #000;
+            }
+
+            &.prev,
+            &.next {
+                font-weight: bold;
             }
         }
     }

@@ -194,7 +194,7 @@ namespace app.Controllers
                 email.Body = new TextPart(TextFormat.Html)
                 {
                     Text = $@"
-        <h3>Application to join the course as a Teacher</h3>
+       <h3>Application to join the course as a Teacher</h3>
         <p><strong>Username:</strong> {request.Username}</p>
         <p><strong>Email:</strong> {request.Email}</p>
         <p><strong>Full Name:</strong> {request.FullName}</p>

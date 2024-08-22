@@ -63,6 +63,11 @@
                                         }
                                     }
                                 </span>
+                                @if(User.Identity.IsAuthenticated){
+                                    <a data-id="@Model.Product.Id" class="add-to-cart-btn btn btn-danger text-white d-block mt-3">Add To Cart</a>
+                                }else{
+                                    <a asp-controller="Account" asp-action="SignIn" class=" btn btn-danger text-white d-block mt-3">Add To Cart</a>
+                                }
                             </div>
                         </div>
                     </div>

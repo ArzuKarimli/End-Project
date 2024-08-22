@@ -1,12 +1,14 @@
 ﻿using app.Areas.Admin.ViewModel.ProductCategoryVM;
 
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services.Interfaces;
 
 namespace app.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class CategoryController : Controller
     {
 
@@ -17,6 +19,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Index()
         {
             var categories = await _categoryService.GetAllOrderByDescendingAsync();
@@ -24,13 +27,13 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Create(CategoryCreateVM category)
         {
 
@@ -51,7 +54,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Detail(int? id)
         {
             if (id is null) return BadRequest();
@@ -69,6 +72,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id is null) return BadRequest();
@@ -81,7 +85,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id is null) return BadRequest();
@@ -93,7 +97,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpPost]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id, CategoryEditVM category)
         {
 

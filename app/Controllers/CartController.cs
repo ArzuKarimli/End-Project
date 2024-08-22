@@ -24,41 +24,48 @@ namespace app.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var modalJson = _accessor.HttpContext.Request.Cookies["modal"];
-            if (modalJson == null)
-                return View(new List<CartVM>());
-
-            List<ModalVM> modalProducts = JsonConvert.DeserializeObject<List<ModalVM>>(modalJson);
-
-            var cartProducts = new List<CartVM>();
-
-            foreach (var modalProduct in modalProducts)
+            if (User.Identity.IsAuthenticated)
             {
-                var product = await _context.Products.Include(p => p.ProductImages).FirstOrDefaultAsync(m => m.Id == modalProduct.Id);
+                var modalJson = _accessor.HttpContext.Request.Cookies["modal"];
+                if (modalJson == null)
+                    return View(new List<CartVM>());
 
-                if (product != null)
+                List<ModalVM> modalProducts = JsonConvert.DeserializeObject<List<ModalVM>>(modalJson);
+
+                var cartProducts = new List<CartVM>();
+
+                foreach (var modalProduct in modalProducts)
                 {
-                    var image = product.ProductImages.FirstOrDefault()?.Name;
+                    var product = await _context.Products.Include(p => p.ProductImages).FirstOrDefaultAsync(m => m.Id == modalProduct.Id);
 
-                    cartProducts.Add(new CartVM
+                    if (product != null)
                     {
-                        Id = product.Id,
-                        Name = product.Name,
-                        Image = image,
-                        Count = modalProduct.TotalCount,
-                        Price = product.Price,
-                        TotalPrice = modalProduct.TotalCount * product.Price,
-                    });
+                        var image = product.ProductImages.FirstOrDefault()?.Name;
+
+                        cartProducts.Add(new CartVM
+                        {
+                            Id = product.Id,
+                            Name = product.Name,
+                            Image = image,
+                            Count = modalProduct.TotalCount,
+                            Price = product.Price,
+                            TotalPrice = modalProduct.TotalCount * product.Price,
+                        });
+                    }
                 }
+
+                decimal totalPrice = cartProducts.Sum(m => m.TotalPrice);
+                int productCount = cartProducts.Sum(m => m.Count);
+
+                ViewBag.TotalPrice = totalPrice;
+                ViewBag.ProductCount = productCount;
+
+                return View(cartProducts);
             }
-
-            decimal totalPrice = cartProducts.Sum(m => m.TotalPrice);
-            int productCount = cartProducts.Sum(m => m.Count);
-
-            ViewBag.TotalPrice = totalPrice;
-            ViewBag.ProductCount = productCount;
-
-            return View(cartProducts);
+            else
+            {
+                return RedirectToAction("SignIn", "Account");
+            }
         }
 
         [HttpPost]

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 using Service.Services.Interfaces;
@@ -7,6 +8,7 @@ using Service.ViewModel.ProductPage;
 
 namespace app.Controllers
 {
+
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -19,17 +21,25 @@ namespace app.Controllers
             _cartService = cartService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int take = 4)
         {
-            var products = await _productService.GetAllAsyncWithImages();
+            var products = await _productService.GetAllPaginationAsync(page, take);
+            var totalProducts = await _productService.GetCountAsync();
+            int totalPages = (int)Math.Ceiling(totalProducts / (double)take);
+
             List<ProductCategory> categories = (List<ProductCategory>)await _categoryService.GetAllAsync();
+
             var model = new ProductVM
             {
                 Products = products.ToList(),
-                ProductCategories = categories
+                ProductCategories = categories,
+                CurrentPage = page,
+                TotalPages = totalPages
             };
+
             return View(model);
         }
+
 
 
         public async Task<IActionResult> Detail(int? id)
@@ -101,15 +111,25 @@ namespace app.Controllers
 
 
         [HttpPost]
+        
         public async Task<IActionResult> AddProductToModal(int? id)
         {
-            if (id == null) return BadRequest();
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null) return BadRequest();
 
-            List<ModalVM> result = await _cartService.AddProductToModalAsync((int)id);
-            int count = result.Sum(m => m.TotalCount);
-            decimal total = result.Sum(m => m.TotalCount * m.TotalPrice);
+                List<ModalVM> result = await _cartService.AddProductToModalAsync((int)id);
+                int count = result.Sum(m => m.TotalCount);
+                decimal total = result.Sum(m => m.TotalCount * m.TotalPrice);
 
-            return Ok(new { count, total });
+                return Ok(new { count, total });
+            }
+            else
+            {
+                return RedirectToAction("SignIn","Account");
+            }
+
+                    
         }
         [HttpGet]
         public async Task<IActionResult> Search(string request)

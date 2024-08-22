@@ -439,12 +439,16 @@
                             <img src="~/assets/images/@item.ProductImages.FirstOrDefault(m=>m.IsMain).Name">
                         </div>
                         <h4><a href=" ">@item.Name</a></h4>
-                        <span>From:$@item.Price</span>
-                        <div class="cart-div"><a data-id="@item.Id"  class="add-to-cart-btn">Add To Cart</a></div>
-
+                        <span>From:$@item.Price</span>                      
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="cart-div"><a data-id="@item.Id" class="add-to-cart-btn" data-toggle="modal">Add To Cart</a></div>
+                        }else{
+                            <div class="cart-div"><a  asp-controller="Account" asp-action="SignIn">Add To Cart</a></div>
+                        }
                     </div>
 
-                }
+              }
 
              
 

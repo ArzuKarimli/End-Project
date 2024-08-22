@@ -1,11 +1,13 @@
 ﻿using app.Areas.Admin.ViewModel.Content;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services.Interfaces;
 
 namespace app.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class ContentController : Controller
     {
 
@@ -15,6 +17,7 @@ namespace app.Areas.Admin.Controllers
             _contentService = contentService;
         }
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<ActionResult> Index()
         {
             var datas = await _contentService.GetAllAsync();
@@ -22,6 +25,7 @@ namespace app.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return BadRequest();
@@ -33,6 +37,7 @@ namespace app.Areas.Admin.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null) return BadRequest();
@@ -43,12 +48,14 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Create()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Create(ContentCreateVM request)
         {
             if (!ModelState.IsValid)
@@ -60,6 +67,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
 
@@ -70,6 +78,7 @@ namespace app.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id, ContentEditVM request)
         {
             if (id == null) return BadRequest();

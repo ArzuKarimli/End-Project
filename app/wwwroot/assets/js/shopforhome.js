@@ -124,4 +124,7 @@ $(document).ready(function () {
             $(".cart-summary-item span.total-price").text(`${totalPrice.toFixed(2)}`);
         }
     });
+
+
+    $('#myModal').modal(options)
 })

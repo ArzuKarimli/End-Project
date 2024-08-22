@@ -2,6 +2,7 @@
 using app.Areas.Admin.ViewModel.Course;
 using AutoMapper;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 using Service.Services.Interfaces;
@@ -9,6 +10,7 @@ using Service.Services.Interfaces;
 namespace app.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class CourseController : Controller
     {
         private readonly ICourseService _courseService;
@@ -22,12 +24,14 @@ namespace app.Areas.Admin.Controllers
             _env = env;
         }
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Index()
         {
             var courses = await _courseService.GetAllWithCategoriesAsync();
             return View(_mapper.Map<IEnumerable<CourseVM>>(courses).ToList());
         }
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Detail(int? id)
         {
             if (id is null) return BadRequest();
@@ -38,6 +42,7 @@ namespace app.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id is null) return BadRequest();

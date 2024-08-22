@@ -1,6 +1,7 @@
 ﻿using app.Areas.Admin.Helpers.Extentions;
 using app.Areas.Admin.ViewModel.About;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 using Service.Services.Interfaces;
@@ -8,6 +9,7 @@ using Service.Services.Interfaces;
 namespace app.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class AboutController : Controller
     {
         private readonly IAboutService _aboutService;
@@ -19,6 +21,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Index()
         {
             var datas= await _aboutService.GetAllAsync();
@@ -26,6 +29,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null) return BadRequest();
@@ -35,12 +39,14 @@ namespace app.Areas.Admin.Controllers
                 
         }
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Create()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Create(AboutCreateVM request)
         {
             if (!ModelState.IsValid)
@@ -85,6 +91,7 @@ namespace app.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return BadRequest();
@@ -99,7 +106,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return BadRequest();
@@ -117,6 +124,7 @@ namespace app.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id, AboutEditVM request)
         {
             if (id == null) return BadRequest();

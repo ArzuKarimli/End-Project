@@ -14,6 +14,8 @@ namespace Service.ViewModel.ProductPage
      
         public Product Product { get; set; }
         public List<CartVM> AddedProducts { get; set; }
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
     }
 }
 

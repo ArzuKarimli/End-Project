@@ -1,5 +1,6 @@
 ﻿using app.Areas.Admin.ViewModel.Account;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace app.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class UserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -14,7 +16,7 @@ namespace app.Areas.Admin.Controllers
         {
             _userManager = userManager;
         }
-       
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Index()
         {
             List<UserRolesVM> userRoles = new();

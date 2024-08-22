@@ -9,6 +9,7 @@ using Service.Services.Interfaces;
 namespace app.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class SliderController : Controller
     {
         private readonly ISliderService _sliderService;
@@ -20,7 +21,7 @@ namespace app.Areas.Admin.Controllers
 
         }
         [HttpGet]
-     
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Index()
         {
             var sliders = await _sliderService.GetAllWithInfoAsync();
@@ -44,7 +45,8 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
-       
+        [Authorize(Roles = "Admin,SuperAdmin")]
+
         public async Task<IActionResult> Detail(int? id)
         {
             if (id is null) return BadRequest();
@@ -56,7 +58,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
-       
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public IActionResult Create()
         {
             return View();
@@ -64,7 +66,7 @@ namespace app.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Create(SliderCreateVM request)
         {
             if (!ModelState.IsValid)
@@ -124,7 +126,7 @@ namespace app.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-     
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id is null) return BadRequest();
@@ -139,7 +141,7 @@ namespace app.Areas.Admin.Controllers
         }
 
         [HttpGet]
-       
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return BadRequest();
@@ -158,6 +160,7 @@ namespace app.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Edit(SliderEditVM request)
         {
             
