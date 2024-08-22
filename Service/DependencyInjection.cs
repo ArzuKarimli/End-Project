@@ -29,6 +29,7 @@ namespace Service
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IBlogService, BlogService>();
             return services;
         }
 

@@ -147,7 +147,7 @@ namespace app.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterTeacher(RegisterTeacherVM request)
         {
             if (!ModelState.IsValid)
@@ -273,6 +273,7 @@ namespace app.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordVM model)
         {
             if (!ModelState.IsValid)
@@ -324,6 +325,7 @@ namespace app.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordVM model)
         {
             if (!ModelState.IsValid)
