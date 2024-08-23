@@ -30,6 +30,7 @@ namespace Service
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IBlogService, BlogService>();
+            services.AddScoped<IReviewService, ReviewService>();
             return services;
         }
 

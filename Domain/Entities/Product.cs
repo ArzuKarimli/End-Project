@@ -19,6 +19,7 @@ namespace Domain.Entities
         public int SalesCount { get; set; } = 0;
         public decimal Price { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }
+        public ICollection<Review>? Reviews { get; set; }
 
     }
 }

@@ -15,10 +15,8 @@
                 </div>
                 @if (!User.IsInRole("Teacher"))
                 {
-                    <h5 class="domain"><strong>@User.Identity.Name</strong></h5>
-                    <form asp-controller="Account" asp-action="Logout">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <button class="px-1 btn btn-danger btn-logout" type="submit">Log Out</button>
+                    <form asp-controller="account" asp-action="RegisterTeacher">
+                        <button type="submit" class="button-27 mx-3">Become a teacher</button>
                     </form>
                 }
 

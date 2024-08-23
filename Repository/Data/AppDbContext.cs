@@ -25,6 +25,7 @@ namespace Repository.Data
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

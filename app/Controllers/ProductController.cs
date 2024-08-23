@@ -14,13 +14,15 @@ namespace app.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly ICartService _cartService;
-        public ProductController(IProductService productService, ICategoryService categoryService, ICartService cartService)
+        private readonly IReviewService _reviewService;
+        public ProductController(IProductService productService, ICategoryService categoryService, ICartService cartService, IReviewService reviewService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _cartService = cartService;
+            _reviewService = reviewService;
         }
-
+        
         public async Task<IActionResult> Index(int page = 1, int take = 4)
         {
             var products = await _productService.GetAllPaginationAsync(page, take);
@@ -41,7 +43,7 @@ namespace app.Controllers
         }
 
 
-
+        [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
             if (id is null) return BadRequest();
@@ -50,12 +52,13 @@ namespace app.Controllers
            
             var products = await _productService.GetAllAsyncWithImages();
             List<ProductCategory> categories = (List<ProductCategory>)await _categoryService.GetAllAsync();
-
+            var reviews = await _reviewService.GetAllReviews();
             ProductDetailVM model = new()
             {
                 Product = product,
                 Products = products.ToList(),
-               ProductCategories= categories
+               ProductCategories= categories,
+               Reviews = reviews.ToList(),
             };
 
             return View(model);
@@ -111,7 +114,7 @@ namespace app.Controllers
 
 
         [HttpPost]
-        
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddProductToModal(int? id)
         {
             if (User.Identity.IsAuthenticated)
@@ -148,7 +151,29 @@ namespace app.Controllers
             };
             return PartialView("_ProductList", model);
         }
-   
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SubmitReview(ProductDetailVM request)
+        {
+           
+    
+            Review review = new()
+            {
+                Email = request.Email,
+                Name = request.Name,
+                Message = request.Message,
+                ProductId = request.ProductId,
+                CreatedAt = DateTime.Now
+                
+            };
+
+            await _reviewService.AddReview(review);
+           
+
+            return RedirectToAction("Detail", new { id = review.ProductId });
+        }
+
 
 
 

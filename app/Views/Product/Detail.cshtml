@@ -71,23 +71,57 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="tab-menu mt-5">
+
                         <ul class="tabs">
                             <li class="tab-link active" data-tab="description">Description</li>
                             <li class="tab-link" data-tab="reviews">Reviews</li>
                         </ul>
                         <div id="description" class="tab-content active">
                             <h2><strong>Description</strong></h2>
-                            <p>@Model.Product.Description</p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper libero purus, in semper turpis egestas vitae. Nulla vehicula ligula pellentesque, molestie lorem interdum, auctor leo. Vestibulum congue ante justo, ac eleifend quam interdum ut. Phasellus id porttitor ipsum. Maecenas egestas urna ligula, sed suscipit diam efficitur eget.
+
+                                Sed fringilla velit vel mi porttitor, id dapibus massa vehicula. Vivamus eu porttitor urna, non condimentum lorem. Quisque tristique pulvinar enim, sagittis interdum risus lobortis ut. Vestibulum a porta ex. Vivamus commodo metus a urna volutpat, in imperdiet nisl fermentum. Etiam sit amet accumsan dolor, non semper ante. Curabitur ante purus, dapibus eu enim at, aliquet convallis neque. Fusce accumsan diam eget nisi sodales, in aliquam erat ornare.
+                            </p>
                         </div>
                         <div id="reviews" class="tab-content">
                             <h2><strong>Reviews</strong></h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.
-                            </p>
+
+                            @if (Model.Reviews != null && Model.Reviews.Any())
+                            {
+                                @foreach (var review in Model.Reviews)
+                                {
+                                    <p class="mt-3"><strong>@review.Name</strong> (@review.CreatedAt.ToShortDateString())</p>
+                                    <p>@review.Message</p>
+                                    <hr />
+                                }
+                            }
+                            else
+                            {
+                                <p>No reviews yet.</p>
+                            }
+
+                            <form asp-action="SubmitReview" method="post" class="review-form mt-4">
+                                <input type="hidden" asp-for="ProductId" value="@Model.Product.Id" />
+                                <div class="form-group">
+                                    <label for="reviewName">Name</label>
+                                    <input type="text" id="reviewName" asp-for="Name" class="form-control" placeholder="Your Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reviewEmail">Email</label>
+                                    <input type="email" id="reviewEmail" asp-for="Email" class="form-control" placeholder="Your Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reviewMessage">Your Review</label>
+                                    <textarea id="reviewMessage" asp-for="Message" class="form-control" rows="5" placeholder="Write your review here..."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                            </form>
                         </div>
-                    </div>
+
+                 </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
                  

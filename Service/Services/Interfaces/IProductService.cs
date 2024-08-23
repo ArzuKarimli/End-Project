@@ -19,5 +19,6 @@ namespace Service.Services.Interfaces
         Task UpdateAsync(Product product);      
         Task<List<Product>> GetAllPaginationAsync(int page, int take = 4);
         Task<int> GetCountAsync();
+        Task AddReview(Review review);
     }
 }

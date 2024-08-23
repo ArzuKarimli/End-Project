@@ -27,6 +27,7 @@ namespace Repository
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
             return services;
         }
     }

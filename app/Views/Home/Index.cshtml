@@ -438,7 +438,7 @@
                         <div class="item-header">
                             <img src="~/assets/images/@item.ProductImages.FirstOrDefault(m=>m.IsMain).Name">
                         </div>
-                        <h4><a href=" ">@item.Name</a></h4>
+                        <h4><a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a></h4>
                         <span>From:$@item.Price</span>                      
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -454,7 +454,7 @@
 
             </div>
             <div class="view">
-                <a href="">View All</a>
+                <a asp-controller="Product" asp-action="Index">View All</a>
             </div>
         </div>
     </section>

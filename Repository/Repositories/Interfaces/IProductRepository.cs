@@ -15,5 +15,6 @@ namespace Repository.Repositories.Interfaces
         Task<List<Product>> GetAllPaginationAsync(int page, int take = 4);
         Task<int> GetCountAsync();
         Task<List<Product>> GetProductsByCategoryIdAsync(int id);
+        Task AddReview(Review review);
     }
 }

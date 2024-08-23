@@ -17,6 +17,12 @@ namespace Repository.Repositories
     {
         public ProductRepository(AppDbContext dbContext):base(dbContext) { }
 
+        public async Task AddReview(Review review)
+        {
+           await _dbcontext.AddAsync(review);
+            await _dbcontext.SaveChangesAsync();
+        }
+
         public async Task<List<Product>> GetAllPaginationAsync(int page, int take = 4)
         {
             return await _entities.Include(m => m.Category).Include(m => m.ProductImages).Skip((page - 1) * take).Take(take).ToListAsync();
@@ -34,7 +40,7 @@ namespace Repository.Repositories
         {
             return await _entities
                 .IncludeMultiple(p => p.ProductImages)
-                .Include(p => p.Category)
+                .Include(p => p.Category).Include(m=>m.Reviews)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 

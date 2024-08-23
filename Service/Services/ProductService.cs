@@ -17,6 +17,11 @@ namespace Service.Services
             _productRepo = productRepo;
         }
 
+        public async Task AddReview(Review review)
+        {
+             await _productRepo.AddReview(review);
+        }
+
         public async Task CreateAsync(Product product)
         {
             await _productRepo.CreateAsync(product);
