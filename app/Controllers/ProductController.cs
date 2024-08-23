@@ -113,25 +113,17 @@ namespace app.Controllers
 
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]      
         public async Task<IActionResult> AddProductToModal(int? id)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                if (id == null) return BadRequest();
+               if (id == null) return BadRequest();
 
                 List<ModalVM> result = await _cartService.AddProductToModalAsync((int)id);
                 int count = result.Sum(m => m.TotalCount);
                 decimal total = result.Sum(m => m.TotalCount * m.TotalPrice);
 
                 return Ok(new { count, total });
-            }
-            else
-            {
-                return RedirectToAction("SignIn","Account");
-            }
-
+            
                     
         }
         [HttpGet]

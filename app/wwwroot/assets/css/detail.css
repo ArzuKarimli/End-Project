@@ -364,7 +364,48 @@ body {
 #detail .tab-content.active {
     display: block;
 }
+    #detail .tab-menu {
+        width: 600px;
+        margin: 50px auto;
+        font-family: "Roboto Condensed", sans-serif;
+    }
 
+        #detail .tab-menu .tabs {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-bottom: 1px solid #ced4da;
+        }
+
+            #detail .tab-menu .tabs .tab-link {
+                padding: 10px 20px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                #detail .tab-menu .tabs .tab-link.active {
+                    background-color: #ff3115;
+                    color: #fff;
+                }
+
+                #detail .tab-menu .tabs .tab-link:hover {
+                    background-color: #e11b00;
+                    color: #fff;
+                }
+
+        #detail .tab-menu .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #ced4da;
+            border-top: none;
+        }
+
+            #detail .tab-menu .tab-content.active {
+                display: block;
+            }
 #detail .tab-content .review-form {
     margin-top: 20px;
 }

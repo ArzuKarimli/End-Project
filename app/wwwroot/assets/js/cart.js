@@ -1,1 +1,196 @@
-﻿
+﻿$(document).on("click", ".add-to-cart-btn", function (e) {
+  
+    debugger
+    e.preventDefault();
+    let id = parseInt($(this).attr("data-id"));
+
+    $.ajax({
+        debugger
+        url: `/Product/AddProductToModal`,
+        type: "POST",
+        data: { id: id },
+        success: function (response) {
+            $(".total-count").text(response.count);
+            $(".total-price").text(response.total);
+        }
+    });
+});
+$(document).ready(function () {
+    debugger
+    function updateCart(response, row) {
+        var productCountElement = row.find(".product-count");
+        var productInputElement = row.find("input[type='number']");
+        var basketTotalPriceElement = $('.total-price');
+        var productPriceElement = row.find(".product-price");
+
+        productInputElement.val(response.count);
+        basketTotalPriceElement.text(`${response.totalPrice}`);
+        productPriceElement.text(`${response.price}`);
+
+        if (response.count === 0) {
+            row.remove();
+        }
+    }
+
+    $(document).on("click", ".btn-minus", function () {
+        debugger
+        let id = parseInt($(this).attr("data-id"));
+        var row = $(this).closest(".cart-item");
+
+        $.ajax({
+            url: `/cart/ReductionCounterProduct`,
+            type: "POST",
+            data: { id: id },
+            success: function (response) {
+                updateCart(response, row);
+            }
+        });
+    });
+
+    $(document).on("click", ".btn-plus", function () {
+        let id = parseInt($(this).attr("data-id"));
+        var row = $(this).closest(".cart-item");
+
+        $.ajax({
+            url: `/cart/IncrementCounterProduct`,
+            type: "POST",
+            data: { id: id },
+            success: function (response) {
+                updateCart(response, row);
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $(document).on("click", ".cart-item-remove button", function () {
+            let id = parseInt($(this).closest(".cart-item").find(".btn-minus").attr("data-id"));
+            var row = $(this).closest(".cart-item");
+            var formData = new FormData();
+            formData.append("id", id);
+
+            $.ajax({
+                url: `/cart/Delete`,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    row.remove();
+                    updateCartSummary();
+                },
+            });
+        });
+
+        function updateCartSummary() {
+            var totalItems = 0;
+            var totalPrice = 0;
+
+            $(".cart-item").each(function () {
+                var itemQuantity = parseInt($(this).find("input[type='number']").val());
+                var itemPrice = parseFloat($(this).find(".product-price").text().replace("₼", ""));
+
+                totalItems += itemQuantity;
+                totalPrice += itemQuantity * itemPrice;
+            });
+
+            $(".cart-summary-item span").eq(1).text(totalItems);
+            $(".cart-summary-item span.total-price").text(`${totalPrice.toFixed(2)}`);
+        }
+    });
+
+    $(document).ready(function () {
+        function applyFilters() {
+            var selectedCategory = $("#categoryId").val();
+            var maxPrice = $("#price").val();
+            var sortOption = $("#sort").val();
+
+            $.ajax({
+                url: "/product/Filter",
+                type: "GET",
+                data: {
+                    categoryId: selectedCategory,
+                    price: maxPrice,
+                    sort: sortOption
+                },
+                success: function (response) {
+                    $("#product-list").html(response);
+                }
+            });
+        }
+        $("#categoryId, #price, #sort").on("change", applyFilters);
+        $("input[name='brands']").on("change", applyFilters);
+        $("#price").on("input", function () {
+            $("#max-price").text(`₼${$(this).val()}`);
+        });
+    });
+
+    $(document).ready(function () {
+        $('#search-button').on('click', function (e) {
+            e.preventDefault();
+            var query = $('#search-input').val();
+            if (query) {
+                $.ajax({
+                    url: "/product/Search",
+                    type: 'GET',
+                    data: { request: query },
+                    success: function (result) {
+                        $('#search-results').html(result);
+                    },
+                    error: function () {
+                        $('#search-results').html('<p>An error occurred</p>');
+                    }
+                });
+            } else {
+                alert("Please enter a search term.");
+            }
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('.card-box').show();
+
+        $('#tabMenu li a').on('click', function (e) {
+            e.preventDefault();
+            var category = $(this).data('category');
+            $('#tabMenu li').removeClass('active');
+            $(this).parent().addClass('active');
+            if (category === 'ALL') {
+                $('.card-box').show();
+            } else {
+                $('.card-box').each(function () {
+                    var courseCategory = $(this).data('category');
+                    if (courseCategory === category) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('.teacher-card').show();
+        $('#tabMenu li a').on('click', function (e) {
+            e.preventDefault();
+
+            var category = $(this).data('category');
+            $('#tabMenu li').removeClass('active');
+            $(this).parent().addClass('active');
+
+            if (category === 'ALL') {
+                $('.teacher-card').show();
+            } else {
+                $('.teacher-card').each(function () {
+                    var teacherCategories = $(this).data('categories').split(' ');
+                    if (teacherCategories.includes(category)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    });
+});

@@ -27,6 +27,7 @@ namespace app.Areas.Admin.Controllers
                 string rolesStr = string.Join(",", roles.ToArray());
                 userRoles.Add(new UserRolesVM
                 {
+                    Id=user.Id,
                     FullName = user.FullName,
                     Roles = rolesStr,
                     Username = user.UserName,
@@ -35,5 +36,32 @@ namespace app.Areas.Admin.Controllers
             }
             return View(userRoles);
         }
+        [HttpPost]
+        [Authorize(Roles = "Admin,SuperAdmin")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            if (roles.Contains("SuperAdmin"))
+            {
+                TempData["Error"] = "You cannot delete a SuperAdmin user.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            TempData["Error"] = "User could not be deleted.";
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }

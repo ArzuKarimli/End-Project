@@ -21,7 +21,6 @@ namespace Service.ViewModel.TeacherPage
         public string Level { get; set; }
         public int Lesson { get; set; }
         public IFormFile Image { get; set; } 
-        public int Rating { get; set; }
         public int Class { get; set; }
         public int StudentCount { get; set; }
         public DateTime StartTime { get; set; }

@@ -28,7 +28,8 @@
     });
   });
 $(document).on("click", ".add-to-cart-btn", function (e) {
- 
+   
+    debugger
     e.preventDefault();
     let id = parseInt($(this).attr("data-id"));
 
